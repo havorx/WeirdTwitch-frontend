@@ -1,6 +1,4 @@
-import React from 'react'
-import { Button, Row, Col } from 'react-bootstrap';
-import { SECONDARY_COLOR, PRIMARY_COLOR } from '../../utils/Const';
+import { Button } from 'react-bootstrap';
 const examples = [
     "Category 1", "Category 112312312", "Category 1 Category", "Cate", "Category 1", "Category 1", "Category 1", "Category 1",
     "Category 1", "Category 112312312", "Category 1 Category", "Cate", "Category 1", "Category 1", "Category 1", "Category 1",

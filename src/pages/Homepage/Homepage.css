@@ -1,3 +1,13 @@
+:root {
+  --primary_color: #0e0e10;
+  --secondary_color: #fbc02d;
+  --primary_text: #efeff1;
+  --secondary_text: #fbc02d;
+  --sub_secondary_color: #cc9f2d;
+  --sub_primary_color: #3a3a3d;
+  --hover_sub_primary: #4e4e50;
+}
+
 main {
   padding: 40px 0px;
 }
@@ -6,4 +16,15 @@ li {
   display: flex;
 }
 
+.inputLogin {
+  background-color: #ffffff33 !important;
+  border: none;
+  color: white;
+}
 
+.inputLogin:focus {
+  box-shadow: none;
+  background-color: rgba(0, 0, 0) !important;
+  color: white;
+  border: 2px solid var(--secondary_color);
+}

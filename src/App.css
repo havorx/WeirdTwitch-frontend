@@ -3,6 +3,9 @@
   --secondary_color: #fbc02d;
   --primary_text: #efeff1;
   --secondary_text: #fbc02d;
+  --sub_secondary_color: #cc9f2d;
+  --sub_primary_color: #3a3a3d;
+  --hover_sub_primary: #4e4e50;
 }
 
 button:focus {
@@ -26,6 +29,7 @@ a:hover {
 }
 
 p,
+a,
 span,
 h1,
 h2,
@@ -34,7 +38,7 @@ h4,
 h5,
 h6,
 div {
-  color: var(--primary_text);
+  color: var(--primary_text) !important;
 }
 
 .long-and-truncated {
@@ -48,12 +52,33 @@ div {
 }
 
 .buttonOutlined {
-  background-color: var(--primary_color) !important; 
+  background-color: #1a1a1a !important;
   border: 1px solid var(--secondary_color) !important;
   color: var(--secondary_text) !important;
+  transition: background-color 0.3s ease-out !important;
 }
 
 .buttonOutlined:hover {
   background-color: var(--secondary_color) !important;
   color: var(--primary_color) !important;
+}
+
+.buttonFilledSecondary {
+  background-color: var(--secondary_color) !important;
+  color: var(--primary_color) !important;
+  transition: background-color 0.3s ease-out !important;
+}
+
+.buttonFilledSecondary:hover {
+  background-color: var(--sub_secondary_color) !important;
+}
+
+.buttonFilledPrimary {
+  background-color: var(--sub_primary_color) !important;
+  color: var(--primary_text) !important;
+  transition: background-color 0.3s ease-out !important;
+}
+
+.buttonFilledPrimary:hover {
+  background-color: var(--hover_sub_primary) !important;
 }

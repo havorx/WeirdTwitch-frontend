@@ -1,7 +1,7 @@
 import { Card } from 'react-bootstrap';
 import { Radio as RadioIcon, Link as LinkIcon, BarChart2 as BarChart2Icon } from 'react-feather';
 import image from '../../assets/03-glitch.jpg';
-import { PRIMARY_COLOR, SUB_PRIMARY_COLOR, SUB_PRIMARY_TEXT, SECONDARY_COLOR, PRIMARY_TEXT } from '../../utils/Const';
+import { PRIMARY_COLOR, SUB_PRIMARY_COLOR, PRIMARY_TEXT } from '../../utils/Const';
 
 let arr = Array(30).fill(0)
 
@@ -26,7 +26,7 @@ export default function TrendingContent() {
                 </div>
             </Card.Header>
             <Card.Body style={{ backgroundColor: `${PRIMARY_COLOR}` }}>
-                <Card.Title>Global warming and its effect on agriculture</Card.Title>
+                <Card.Title><a href="*">Global warming and its effect on agriculture</a></Card.Title>
                 <Card.Text>
                     On today's episode of what's bothering me
                 </Card.Text>
@@ -34,8 +34,8 @@ export default function TrendingContent() {
                     <div className="d-flex">
                         <img style={{ width: '40px', height: '40px', borderRadius: '100%', marginRight: '10px' }} src={image} alt="" />
                         <div>
-                            <div><a href="*" style={{ color: SUB_PRIMARY_TEXT }}>Lord Nearquaard</a></div>
-                            <div><a href="*" style={{ color: SUB_PRIMARY_TEXT }}>English</a></div>
+                            <div><a href="*">Lord Nearquaard</a></div>
+                            <div><a href="*">English</a></div>
                         </div>
                     </div>
                     <div className="d-flex  justify-content-center align-items-center">
