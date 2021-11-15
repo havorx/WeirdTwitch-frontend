@@ -1,3 +1,10 @@
+:root {
+  --primary_color: #0e0e10;
+  --secondary_color: #2d88ff;
+  --primary_text: #efeff1;
+  --secondary_text: #3d91ff;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -7,10 +14,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--primary_color) !important;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-

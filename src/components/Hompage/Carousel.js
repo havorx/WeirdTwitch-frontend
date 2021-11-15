@@ -28,7 +28,8 @@ export default function HompageCarousel() {
                 <TrendingContent />
                 <TrendingContent />
                 <TrendingContent />
-            </Carousel>;
+                <TrendingContent />
+            </Carousel>
         </>
     )
 }
