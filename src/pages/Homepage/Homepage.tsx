@@ -1,4 +1,3 @@
-import React from 'react'
 import MainNav from '../../components/Navbar/Navbar'
 import HompageCarousel from '../../components/Hompage/Carousel'
 import Categories from '../../components/Hompage/Categories'
@@ -16,10 +15,12 @@ export default function Homepage() {
                         <h5>Trending</h5>
                         <HompageCarousel />
                     </div>
+                    <hr />
                     <div className="mb-5">
                         <h5>Categories</h5>
                         <Categories />
                     </div>
+                    <hr />
                     <div className="mb-5">
                         <h5>Feature Users</h5>
                         <FeatureUser />
