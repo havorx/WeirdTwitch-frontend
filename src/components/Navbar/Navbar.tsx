@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import image from '../../assets/03-glitch.jpg';
 import './Navbar.css';
 import { Search as SearchIcon, User as UserIcon, Bell as BellIcon } from 'react-feather'
-import { SUB_PRIMARY_COLOR, PRIMARY_TEXT } from '../../utils/Const';
+import { PRIMARY_TEXT } from '../../utils/Const';
 import { useState } from 'react';
 import LoginPopup from '../Authen/LoginPopup';
 import RegisterPopup from '../Authen/RegisterPopup';
@@ -27,10 +27,10 @@ export default function MainNav() {
                         <FormControl className="search-input" placeholder="Search" >
                         </FormControl>
                     </InputGroup>
-                    <Button className="search-btn"  id="basic-addon1"><SearchIcon /></Button>
+                    <Button className="search-btn" id="basic-addon1"><SearchIcon /></Button>
                 </Col>
                 <Col className="d-flex justify-content-end align-items-center">
-                    {user ?
+                    {!user ?
                         <>
                             <Button className="me-2 buttonFilledPrimary" variant="outline-none"
                                 onClick={() => { setLoginShow(true) }}
@@ -57,3 +57,5 @@ export default function MainNav() {
         </Navbar>
     )
 }
+
+// setLoaded

@@ -82,3 +82,20 @@ div {
 .buttonFilledPrimary:hover {
   background-color: var(--hover_sub_primary) !important;
 }
+
+article {
+  padding: 40px 0px;
+}
+
+.search-btn {
+  background: var(--sub_primary_color) !important;
+  border: none !important;
+  color: white !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.spinner {
+  border: 8px solid var(--secondary_color) !important;
+  border-right-color: transparent !important;
+}

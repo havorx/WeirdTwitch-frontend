@@ -8,9 +8,6 @@
   --hover_sub_primary: #4e4e50;
 }
 
-main {
-  padding: 40px 0px;
-}
 
 li {
   display: flex;
@@ -36,10 +33,3 @@ li {
 
 /* style={{ background: SUB_PRIMARY_COLOR, border: 'none', outline: 'red', color: 'white' }} */
 
-.search-btn {
-  background: var(--sub_primary_color) !important;
-  border: none !important;
-  color: white !important;
-  border-top-left-radius: 0 !important;
-  border-bottom-left-radius: 0 !important;
-}
