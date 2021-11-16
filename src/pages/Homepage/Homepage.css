@@ -28,3 +28,18 @@ li {
   color: white;
   border: 2px solid var(--secondary_color);
 }
+
+.search-input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* style={{ background: SUB_PRIMARY_COLOR, border: 'none', outline: 'red', color: 'white' }} */
+
+.search-btn {
+  background: var(--sub_primary_color) !important;
+  border: none !important;
+  color: white !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
