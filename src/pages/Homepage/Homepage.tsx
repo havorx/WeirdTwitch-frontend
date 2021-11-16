@@ -1,4 +1,3 @@
-import MainNav from '../../components/Navbar/Navbar'
 import HompageCarousel from '../../components/Hompage/Carousel'
 import Categories from '../../components/Hompage/Categories'
 import FeatureUser from '../../components/Hompage/FeatureUser'
@@ -8,8 +7,7 @@ import './Homepage.css'
 export default function Homepage() {
     return (
         <>
-            <MainNav />
-            <main >
+            <article >
                 <Container>
                     <div className="mb-5">
                         <h5>Trending</h5>
@@ -26,7 +24,7 @@ export default function Homepage() {
                         <FeatureUser />
                     </div>
                 </Container>
-            </main>
+            </article>
         </>
     )
 }
