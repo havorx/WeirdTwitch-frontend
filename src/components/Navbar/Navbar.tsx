@@ -9,6 +9,25 @@ import { Link } from 'react-router-dom';
 import LoginPopup from '../Authen/LoginPopup';
 import RegisterPopup from '../Authen/RegisterPopup';
 import DropdownUser from './DropdownUser';
+import { render } from "react-dom";
+import {
+    BrowserRouter,
+    Routes,
+    Route
+} from "react-router-dom";
+import App from "../../App";
+import Category from "../../pages/Category/Category";
+/*
+const rootElement = document.getElementById("root");
+render(
+    <BrowserRouter>
+        <Routes>
+            <Route path="/" element={<App/>}/>
+            <Route path="/category" element={<Category/>}/>
+        </Routes>
+    </BrowserRouter>,
+    rootElement
+);*/
 export default function MainNav() {
 
     const [loginShow, setLoginShow] = useState(false);
@@ -28,7 +47,7 @@ export default function MainNav() {
                 </Col>
                 <Col className="d-flex justify-content-center align-items-center">
                     <InputGroup>
-                        <FormControl className="search-input" placeholder="Search" >
+                        <FormControl className="search-input" placeholder="Search">
                         </FormControl>
                     </InputGroup>
                     <Button className="search-btn" id="basic-addon1"><SearchIcon /></Button>
@@ -37,12 +56,16 @@ export default function MainNav() {
                     {!user ?
                         <>
                             <Button className="me-2 buttonFilledPrimary" variant="outline-none"
-                                onClick={() => { setLoginShow(true) }}
+                                onClick={() => {
+                                    setLoginShow(true)
+                                }}
                             >
                                 Login
                             </Button>
                             <Button className="me-2 buttonFilledSecondary" variant="outline-none"
-                                onClick={() => { setRegisterShow(true) }}
+                                onClick={() => {
+                                    setRegisterShow(true)
+                                }}
                             >
                                 Sign up
                             </Button>
