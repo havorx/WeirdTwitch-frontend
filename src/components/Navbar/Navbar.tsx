@@ -2,19 +2,22 @@ import { Navbar, Nav, Image, InputGroup, FormControl, Col, Button } from 'react-
 import 'bootstrap/dist/css/bootstrap.min.css'
 import image from '../../assets/03-glitch.jpg';
 import './Navbar.css';
-import { Search as SearchIcon, User as UserIcon, Bell as BellIcon } from 'react-feather'
+import { Search as SearchIcon, Bell as BellIcon } from 'react-feather'
 import { PRIMARY_TEXT } from '../../utils/Const';
 import { useState } from 'react';
 import LoginPopup from '../Authen/LoginPopup';
 import RegisterPopup from '../Authen/RegisterPopup';
+import DropdownUser from './DropdownUser';
 export default function MainNav() {
 
     const [loginShow, setLoginShow] = useState(false);
     const [registerShow, setRegisterShow] = useState(false);
-    const user = false;
+    const user = true;
 
     return (
-        <Navbar className="d-flex justify-content-between align-items-center" bg="dark" variant="dark" style={{ padding: '10px 20px' }}>
+        <Navbar className="d-flex justify-content-between align-items-center"
+            bg="dark" variant="dark" style={{ padding: '10px 20px' }} fixed="top"
+        >
             <div className="d-flex justify-content-between align-items-center w-100">
                 <Col className="d-flex justify-content-between align-items-center">
                     <Image className="logo" src={image} />
@@ -48,8 +51,7 @@ export default function MainNav() {
                             <Button style={{ color: PRIMARY_TEXT }} variant="outline-none"><BellIcon /></Button>
                         </>
                     }
-
-                    <Button className="me-2" style={{ color: PRIMARY_TEXT }} variant="outline-none"><UserIcon /></Button>
+                    <DropdownUser />
                 </Col>
             </div>
             <LoginPopup show={loginShow} onHide={() => setLoginShow(false)} />

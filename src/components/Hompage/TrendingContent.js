@@ -5,9 +5,9 @@ import { PRIMARY_COLOR, SUB_PRIMARY_COLOR, PRIMARY_TEXT } from '../../utils/Cons
 
 let arr = Array(30).fill(0)
 
-export default function TrendingContent() {
+export default function TrendingContent({ propWidth, propMarginRight }) {
     return (
-        <Card style={{ width: '500px', marginRight: '20px', border: `1px solid ${SUB_PRIMARY_COLOR}` }}>
+        <Card style={{ width: propWidth, marginRight: propMarginRight ? propMarginRight : 0, border: `1px solid ${SUB_PRIMARY_COLOR}` }}>
             <Card.Header style={{ backgroundColor: `${SUB_PRIMARY_COLOR}`, height: '210px' }}>
                 <div className="d-flex justify-content-between ">
                     <div>
