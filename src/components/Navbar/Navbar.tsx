@@ -5,6 +5,7 @@ import './Navbar.css';
 import { Search as SearchIcon, Bell as BellIcon } from 'react-feather'
 import { PRIMARY_TEXT } from '../../utils/Const';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import LoginPopup from '../Authen/LoginPopup';
 import RegisterPopup from '../Authen/RegisterPopup';
 import DropdownUser from './DropdownUser';
@@ -20,9 +21,9 @@ export default function MainNav() {
         >
             <div className="d-flex justify-content-between align-items-center w-100">
                 <Col className="d-flex justify-content-between align-items-center">
-                    <Image className="logo" src={image} />
+                    <Link to="/"> <Image className="logo" src={image} /></Link>
                     <Nav className="me-auto" style={{ fontSize: '1.4rem', padding: '0px 1.5rem' }}>
-                        <Nav.Link style={{ fontWeight: 600 }} href="#home">Browse</Nav.Link>
+                        <Link style={{ fontWeight: 600 }} to="/browse">Browse</Link>
                     </Nav>
                 </Col>
                 <Col className="d-flex justify-content-center align-items-center">
