@@ -49,9 +49,9 @@ export default function MainNav() {
                         : <>
                             <Button className="me-2 buttonFilledSecondary" variant="outline-none">Add Credits</Button>
                             <Button style={{ color: PRIMARY_TEXT }} variant="outline-none"><BellIcon /></Button>
+                            <DropdownUser />
                         </>
                     }
-                    <DropdownUser />
                 </Col>
             </div>
             <LoginPopup show={loginShow} onHide={() => setLoginShow(false)} />
