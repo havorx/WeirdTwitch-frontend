@@ -25,10 +25,10 @@ export default function HompageCarousel() {
     return (
         <>
             <Carousel responsive={responsive} className="mt-4">
-                <TrendingContent />
-                <TrendingContent />
-                <TrendingContent />
-                <TrendingContent />
+                <TrendingContent propWidth={'500px'} propMarginRight={'10px'} />
+                <TrendingContent propWidth={'500px'} propMarginRight={'10px'} />
+                <TrendingContent propWidth={'500px'} propMarginRight={'10px'} />
+                <TrendingContent propWidth={'500px'} propMarginRight={'10px'} />
             </Carousel>
         </>
     )

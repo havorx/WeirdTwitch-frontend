@@ -14,7 +14,9 @@ export default function MainNav() {
     const user = false;
 
     return (
-        <Navbar className="d-flex justify-content-between align-items-center" bg="dark" variant="dark" style={{ padding: '10px 20px' }}>
+        <Navbar className="d-flex justify-content-between align-items-center"
+            bg="dark" variant="dark" style={{ padding: '10px 20px' }} fixed="top"
+        >
             <div className="d-flex justify-content-between align-items-center w-100">
                 <Col className="d-flex justify-content-between align-items-center">
                     <Image className="logo" src={image} />

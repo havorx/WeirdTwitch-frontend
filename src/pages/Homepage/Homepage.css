@@ -26,10 +26,7 @@ li {
   border: 2px solid var(--secondary_color);
 }
 
-.search-input {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
+
 
 /* style={{ background: SUB_PRIMARY_COLOR, border: 'none', outline: 'red', color: 'white' }} */
 

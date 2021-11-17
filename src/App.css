@@ -1,5 +1,5 @@
 :root {
-  --primary_color: #0e0e10;
+  --primary_color: #100f0e;
   --secondary_color: #fbc02d;
   --primary_text: #efeff1;
   --secondary_text: #fbc02d;
@@ -29,7 +29,6 @@ a:hover {
 }
 
 p,
-a,
 span,
 h1,
 h2,
@@ -38,6 +37,10 @@ h4,
 h5,
 h6,
 div {
+  color: var(--primary_text);
+}
+
+a {
   color: var(--primary_text) !important;
 }
 
@@ -49,6 +52,10 @@ div {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   word-wrap: break-word; /* Important for long words! */
+}
+
+.cut-on-third {
+  -webkit-line-clamp: 3 !important;
 }
 
 .buttonOutlined {
@@ -95,7 +102,18 @@ article {
   border-bottom-left-radius: 0 !important;
 }
 
+.search-input {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
 .spinner {
   border: 8px solid var(--secondary_color) !important;
   border-right-color: transparent !important;
+}
+
+.basic-grid {
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
