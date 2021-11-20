@@ -11,10 +11,6 @@ function App() {
 
   return (
     <div className="App ">
-      {/* <MainNav />
-      <Homepage />
-      <Browse />
-      <Category /> */}
       {content}
     </div>
   );

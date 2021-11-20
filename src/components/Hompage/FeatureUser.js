@@ -6,10 +6,10 @@ const arr = [0, 1, 2, 3, 4, 5, 6]
 const cate = ["Category 1", "Category 2", "Category 3"]
 export default function FeatureUser() {
     return (
-        <div className="d-flex flex-wrap  mt-4">
+        <div className="basic-grid-four  mt-4">
             {arr.map(a => {
-                return <Card className="me-4 mb-4" style={{ width: '300px', border: `1px solid ${SUB_PRIMARY_COLOR}` }} >
-                    <Card.Header className="d-flex flex-column justify-content-center align-items-center" style={{ background: `${SUB_PRIMARY_COLOR}` }} >
+                return <Card className="me-4 mb-4" style={{ width: '100%', border: `1px solid ${SUB_PRIMARY_COLOR}` }} >
+                    <Card.Header className="d-flex flex-column justify-content-center align-items-center pt-3" style={{ background: `${SUB_PRIMARY_COLOR}` }} >
                         <img src={image} alt="" style={{ width: '50px', height: '50px', borderRadius: '100%' }} />
                         <p className="mb-0">@username</p>
                     </Card.Header>

@@ -5,7 +5,7 @@ import { PRIMARY_TEXT, SUB_PRIMARY_COLOR, SECONDARY_COLOR } from '../../utils/Co
 import { Link } from 'react-router-dom'
 export default function BrowseCard() {
     return (
-        <Card className="me-2 mb-4" style={{ width: '316px', border: '1px solid black', backgroundColor: SUB_PRIMARY_COLOR }}>
+        <Card className="mb-1" style={{ width: '100%', border: '1px solid black', backgroundColor: SUB_PRIMARY_COLOR }}>
             <Card.Header className="d-flex justify-content-end" style={{ border: 'none', backgroundColor: 'inherit' }} >
                 <div className="d-flex justify-content-end pt-2">
                     <button className="hoverSecondaryColor" style={{ backgroundColor: 'inherit', border: 'none', color: PRIMARY_TEXT }}>

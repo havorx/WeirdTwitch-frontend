@@ -6,6 +6,7 @@
   --sub_secondary_color: #cc9f2d;
   --sub_primary_color: #3a3a3d;
   --hover_sub_primary: #4e4e50;
+  --sub_primary_text: #adadb8;
 }
 
 button:focus {
@@ -102,6 +103,18 @@ article {
   border-bottom-left-radius: 0 !important;
 }
 
+input {
+  border: none !important;
+  background-color: var(--hover_sub_primary) !important;
+  color: var(--primary_text) !important;
+}
+
+input:focus {
+  border: 2px solid var(--secondary_color) !important;
+  box-shadow: none !important;
+  background-color: var(--primary_color) !important;
+}
+
 .search-input {
   border-top-right-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
@@ -115,5 +128,11 @@ article {
 .basic-grid {
   display: grid;
   gap: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.basic-grid-four {
+  display: grid;
+  gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
