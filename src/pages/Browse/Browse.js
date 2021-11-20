@@ -17,7 +17,7 @@ export default function Browse() {
                 <div className="mb-5">
                     <div className="d-flex justify-content-between">
                         <h5>Categories</h5>
-                        <InputGroup className="d-flex align-items-center position-relative" style={{ width: '310px' }}>
+                        <InputGroup className="d-flex align-items-center position-relative" style={{ width: '40%', maxWidth: '310px' }}>
                             <FormControl placeholder="Search" style={{ color: SUB_PRIMARY_TEXT, backgroundColor: SUB_PRIMARY_COLOR }}>
                             </FormControl>
                             <SearchIcon style={{ right: '10px' }} color={SUB_PRIMARY_TEXT} className="position-absolute" />

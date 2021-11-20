@@ -5,9 +5,9 @@ import { PRIMARY_COLOR, SUB_PRIMARY_COLOR, PRIMARY_TEXT } from '../../utils/Cons
 
 let arr = Array(30).fill(0)
 
-export default function TrendingContent({ propWidth, propMarginRight }) {
+export default function TrendingContent({ propWidth, propPadding }) {
     return (
-        <Card style={{ width: propWidth, marginRight: propMarginRight ? propMarginRight : 0, border: `1px solid ${SUB_PRIMARY_COLOR}` }}>
+        <Card style={{ background: 'inherit', width: propWidth, padding: propPadding ? propPadding : 0 }}>
             <Card.Header style={{ backgroundColor: `${SUB_PRIMARY_COLOR}`, height: '210px' }}>
                 <div className="d-flex justify-content-between ">
                     <div>
@@ -25,7 +25,7 @@ export default function TrendingContent({ propWidth, propMarginRight }) {
                     )}
                 </div>
             </Card.Header>
-            <Card.Body style={{ backgroundColor: `${PRIMARY_COLOR}` }}>
+            <Card.Body style={{ backgroundColor: `${PRIMARY_COLOR}`, paddingLeft: '0' }}>
                 <Card.Title><a href="*">Global warming and its effect on agriculture</a></Card.Title>
                 <Card.Text>
                     On today's episode of what's bothering me
