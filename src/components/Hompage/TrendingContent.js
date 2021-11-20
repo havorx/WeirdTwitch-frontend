@@ -26,7 +26,7 @@ export default function TrendingContent({ propWidth, propPadding }) {
                 </div>
             </Card.Header>
             <Card.Body style={{ backgroundColor: `${PRIMARY_COLOR}`, paddingLeft: '0' }}>
-                <Card.Title><a href="*">Global warming and its effect on agriculture</a></Card.Title>
+                <Card.Title><a href="/bla">Global warming and its effect on agriculture</a></Card.Title>
                 <Card.Text>
                     On today's episode of what's bothering me
                 </Card.Text>

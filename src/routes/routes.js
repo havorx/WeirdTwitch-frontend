@@ -3,6 +3,7 @@ import UserLayout from '../components/Layouts/UserLayout';
 import Homepage from '../pages/Homepage/Homepage';
 import Browse from '../pages/Browse/Browse';
 import Category from '../pages/Category/Category';
+import NotFound from '../pages/404/NotFound';
 const routes = [
     {
         path: '/',
@@ -11,8 +12,8 @@ const routes = [
             { path: '/', element: <Homepage /> },
             { path: '/browse', element: <Browse /> },
             { path: '/category/:categoryID', element: <Category /> },
-            // { path: '/404', element: <NotFound /> },
-            // { path: '*', elemet: <Navigate to="/404" /> }
+            { path: '/404', element: <NotFound /> },
+            { path: '*', element: <Navigate to="/404" /> }
         ]
     },
     // {
