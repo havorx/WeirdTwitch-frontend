@@ -9,31 +9,12 @@ import { Link } from 'react-router-dom';
 import LoginPopup from '../Authen/LoginPopup';
 import RegisterPopup from '../Authen/RegisterPopup';
 import DropdownUser from './DropdownUser';
-import { render } from "react-dom";
-import {
-    BrowserRouter,
-    Routes,
-    Route
-} from "react-router-dom";
-import App from "../../App";
-import Category from "../../pages/Category/Category";
-/*
-const rootElement = document.getElementById("root");
-render(
-    <BrowserRouter>
-        <Routes>
-            <Route path="/" element={<App/>}/>
-            <Route path="/category" element={<Category/>}/>
-        </Routes>
-    </BrowserRouter>,
-    rootElement
-);*/
 export default function MainNav() {
 
     const [loginShow, setLoginShow] = useState(false);
     const [registerShow, setRegisterShow] = useState(false);
     const user = true;
-
+    const admin = true;
     return (
         <Navbar className="d-flex justify-content-between align-items-center"
             bg="dark" variant="dark" style={{ padding: '10px 20px' }} fixed="top"
@@ -42,7 +23,8 @@ export default function MainNav() {
                 <Col className="d-flex justify-content-between align-items-center">
                     <Link to="/"> <Image className="logo" src={image} /></Link>
                     <Nav className="me-auto" style={{ fontSize: '1.4rem', padding: '0px 1.5rem' }}>
-                        <Link style={{ fontWeight: 600 }} to="/browse">Browse</Link>
+                        <Link style={{ fontWeight: 600, marginRight: '20px' }} to="/admin">Administrator</Link>
+                        {admin && user && <Link style={{ fontWeight: 600 }} to="/browse">Browse</Link>}
                     </Nav>
                 </Col>
                 <Col className="d-flex justify-content-center align-items-center">
@@ -71,8 +53,15 @@ export default function MainNav() {
                             </Button>
                         </>
                         : <>
-                            <Button className="me-2 buttonFilledSecondary" variant="outline-none">Add Credits</Button>
-                            <Button style={{ color: PRIMARY_TEXT }} variant="outline-none"><BellIcon /></Button>
+                            {!admin
+                                ? <>
+                                    <Button className="me-2 buttonFilledSecondary" variant="outline-none">Add Credits</Button>
+                                    <Button style={{ color: PRIMARY_TEXT }} variant="outline-none"><BellIcon /></Button>
+                                </>
+                                : <>
+                                    <b className="me-4">Logged in as admin 1</b>
+                                </>
+                            }
                             <DropdownUser />
                         </>
                     }

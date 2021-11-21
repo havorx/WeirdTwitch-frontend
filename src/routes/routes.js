@@ -4,6 +4,7 @@ import Homepage from '../pages/Homepage/Homepage';
 import Browse from '../pages/Browse/Browse';
 import Category from '../pages/Category/Category';
 import NotFound from '../pages/404/NotFound';
+import AdminLayout from '../components/Layouts/AdminLayout';
 const routes = [
     {
         path: '/',
@@ -16,14 +17,10 @@ const routes = [
             { path: '*', element: <Navigate to="/404" /> }
         ]
     },
-    // {
-    //     path: '/admin',
-    //       element: < AdminLayout/>,
-    //       children: [
-    //         { path: 'login', element: <Login /> },
-    //         { path: 'register', element: <Register /> },
-    //       ]
-    // }
+    {
+        path: '/admin',
+        element: < AdminLayout />,
+    }
 ];
 
 export default routes;

@@ -136,3 +136,13 @@ input:focus {
   gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
+
+.tabs-color {
+  color: var(--secondary_color) !important;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: var(--hover_sub_primary) !important;
+  border: none !important;
+  border-bottom: 4px solid var(--secondary_color) !important;
+}
