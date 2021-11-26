@@ -8,7 +8,8 @@ export default function Loading(props) {
         <Modal.Body className="d-flex flex-column justify-content-center align-items-center"
             style={{ backgroundColor: '#18181b', height: '350px' }}
         >
-            {!props.loaded ?
+            {
+                !props.loaded ?
                 <>
                     <Spinner className="spinner" animation="border" role="status"
                         style={{ width: spinnerSize, height: spinnerSize }}

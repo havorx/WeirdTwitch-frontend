@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Button } from 'react-bootstrap';
-import TrendingContent from '../../components/Hompage/TrendingContent';
+import TrendingContent from '../../components/Homepage/TrendingContent';
 import { Heart } from 'react-feather';
 export default function Category() {
     return (
