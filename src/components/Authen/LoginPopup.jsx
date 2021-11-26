@@ -20,8 +20,8 @@ export default function LoginPopup(props) {
     // 2: failed (use XCircle for failed)
     const [loaded, setLoaded] = useState(false);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleSubmit = (event) => {
+        event.preventDefault();
         setLoading(true);
 
         axiosPost('/auth/login', {

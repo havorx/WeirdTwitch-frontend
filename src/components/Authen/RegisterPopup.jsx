@@ -18,17 +18,9 @@ export default function RegisterPopup(props) {
     // 1: successful
     // 2: failed (use XCircle for failed)
     const [loaded, setLoaded] = useState(false);
-    let firstTimeout;
-    let secondTimeout;
 
     const handleSubmit = (event) => {
-        const form = event.currentTarget;
-        console.log(form.checkValidity());
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-        setValidated(true);
+        event.preventDefault();
         setLoading(true);
 
         axiosPost('/auth/signup', {
