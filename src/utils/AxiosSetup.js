@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 export const myAxios = axios.create({
-    baseURL: 'http://localhost:5000/',
+    baseURL: 'http://localhost:5000',
 });
 
 //every request must have authorization header (token and refreshToken)

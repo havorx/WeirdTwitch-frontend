@@ -28,37 +28,36 @@ export default function LoginPopup(props) {
             username: username,
             password: password
         }).then(async response => {
-            if (!response.ok) {
+            if (response.statusText !== 'OK') {
                 if (response.status === 400) {
                     setError('Invalid username or password');
-                } else {
-                    setLoaded(true);
-                    const data = await response.json();
-                    setUserContext(oldValues => {
-                        return {...oldValues, token: data.token};
-                    });
+                }
+            } else {
+                setLoaded(true);
+                const data = await response.data;
+                setUserContext(oldValues => {
+                    return {...oldValues, token: data.token};
+                });
+                //hide loading popup
+                setLoading(false);
+                setLoaded(false);
+                //hide login popup
+                props.onHide();
+            }
+        });
 
+        /*        //test timeout
+                firstTimeout = setTimeout(() => {
+                    setLoaded(true)
+                }, 1000)
+
+                secondTimeout = setTimeout(() => {
                     //hide loading popup
                     setLoading(false);
                     setLoaded(false);
                     //hide login popup
                     props.onHide();
-                }
-            }
-        });
-
-/*        //test timeout
-        firstTimeout = setTimeout(() => {
-            setLoaded(true)
-        }, 1000)
-
-        secondTimeout = setTimeout(() => {
-            //hide loading popup
-            setLoading(false);
-            setLoaded(false);
-            //hide login popup
-            props.onHide();
-        }, 2000)*/
+                }, 2000)*/
     }
 
     return (
