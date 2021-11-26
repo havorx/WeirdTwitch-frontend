@@ -2,7 +2,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { } from 'react-feather'
 import TrendingContent from "./TrendingContent";
-export default function HompageCarousel() {
+export default function HomepageCarousel() {
 
     const responsive = {
         desktop: {
@@ -21,6 +21,8 @@ export default function HompageCarousel() {
             slidesToSlide: 1 // optional, default to 1.
         }
     };
+
+
 
     return (
         <>

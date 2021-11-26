@@ -1,19 +1,20 @@
 import './App.css';
-// import axios from "../http-common";
-import Homepage from './pages/Homepage/Homepage';
-import MainNav from './components/Navbar/Navbar';
-import Browse from './pages/Browse/Browse';
-import Category from './pages/Category/Category';
 import routes from './routes/routes';
-import { useRoutes } from 'react-router';
-function App() {
-  const content = useRoutes(routes);
+import {useRoutes} from 'react-router';
+import {UserProvider} from './context/userContext';
+import {useState} from 'react';
 
-  return (
-    <div className="App ">
-      {content}
-    </div>
-  );
+function App() {
+    const [value, setValue] = useState(null);
+    const content = useRoutes(routes);
+
+    return (
+        <UserProvider value={{value, setValue}}>
+            <div className="App ">
+                {content}
+            </div>
+        </UserProvider>
+    );
 }
 
 export default App;

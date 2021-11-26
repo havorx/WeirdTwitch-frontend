@@ -1,10 +1,10 @@
 const axios = require('axios');
 
-const myAxios = axios.create({
-    baseURL: 'http://localhost:5000/',
+export const myAxios = axios.create({
+    baseURL: 'http://localhost:5000',
 });
 
-//every request must have authorization header (token and refreshtoken) 
+//every request must have authorization header (token and refreshToken)
 myAxios.interceptors.request.use(function (config) {
     const token = localStorage.getItem('token');
     config.headers.Authorization = 'Bearer ' + token;
@@ -17,13 +17,12 @@ myAxios.interceptors.response.use(function (response) {
     /* if error code = 401 (token failure) -> get new token using refreshToken and redo the previous request using 
      new token*/
     if (error.response && error.response.status && error.response.status === 401) {
-        const { data } = await axiosPost('/verify', {})
+        const {data} = await axiosPost('/refreshToken', {})
         localStorage.setItem('token', JSON.stringify(data.user));
         error.config.headers['Authorization'] = 'Bearer ' + JSON.stringify(data.user);
-        error.config.baseURL = undefined;
         return myAxios.request(error.config);
     }
-    //if error code = 6969 (refreshtoken failure) -> remove existing token and redirect to homepage
+    //if error code = 6969 (refreshToken failure) -> remove existing token and redirect to homepage
     else if (error.response && error.response.status && error.response.status === 6969) {
         localStorage.removeItem('token')
         window.location = "/"

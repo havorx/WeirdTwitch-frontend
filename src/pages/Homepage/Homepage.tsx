@@ -1,6 +1,6 @@
-import HompageCarousel from '../../components/Hompage/Carousel'
-import Categories from '../../components/Hompage/Categories'
-import FeatureUser from '../../components/Hompage/FeatureUser'
+import HomepageCarousel from '../../components/Homepage/Carousel'
+import Categories from '../../components/Homepage/Categories'
+import FeatureUser from '../../components/Homepage/FeatureUser'
 import { Container } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Homepage.css'
@@ -11,7 +11,7 @@ export default function Homepage() {
                 <Container>
                     <div className="mb-5">
                         <h5>Trending</h5>
-                        <HompageCarousel />
+                        <HomepageCarousel />
                     </div>
                     <hr />
                     <div className="mb-5">
@@ -20,7 +20,7 @@ export default function Homepage() {
                     </div>
                     <hr />
                     <div className="mb-5">
-                        <h5>Feature Users</h5>
+                        <h5>Featured Users</h5>
                         <FeatureUser />
                     </div>
                 </Container>
