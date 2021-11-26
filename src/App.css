@@ -103,13 +103,25 @@ article {
   border-bottom-left-radius: 0 !important;
 }
 
-input {
+input,
+select,
+textarea {
   border: none !important;
   background-color: var(--hover_sub_primary) !important;
   color: var(--primary_text) !important;
 }
 
-input:focus {
+option {
+  background-color: var(--hover_sub_primary) !important;
+}
+
+option:hover {
+  background-color: black !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
   border: 2px solid var(--secondary_color) !important;
   box-shadow: none !important;
   background-color: var(--primary_color) !important;
@@ -145,4 +157,9 @@ input:focus {
   background-color: var(--hover_sub_primary) !important;
   border: none !important;
   border-bottom: 4px solid var(--secondary_color) !important;
+}
+
+.card-header {
+  border: none !important;
+  border-radius: 0 !important;
 }

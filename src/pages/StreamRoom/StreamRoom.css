@@ -1,0 +1,43 @@
+:root {
+  --primary_color: #100f0e;
+  --secondary_color: #fbc02d;
+  --primary_text: #efeff1;
+  --secondary_text: #fbc02d;
+  --sub_secondary_color: #cc9f2d;
+  --sub_primary_color: #3a3a3d;
+  --hover_sub_primary: #4e4e50;
+  --sub_primary_text: #adadb8;
+}
+.comment-side {
+  border: none !important;
+  height: calc(100vh - 150px);
+  max-height: 1000px;
+}
+
+.room-border {
+  border: 1px solid var(--sub_primary_color);
+}
+
+.audio-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  margin: 0 10px;
+  box-shadow: none;
+  border: none;
+  background-color: var(--hover_sub_primary);
+  color: var(--primary_text);
+}
+
+.audio-btn:hover {
+  background-color: #5b5b5d;
+}
+
+.red-btn {
+  background-color: #ea4335 !important;
+}
+
+.red-btn:hover,
+.red-btn:active {
+  background-color: #eb4f41 !important;
+}

@@ -1,0 +1,40 @@
+:root {
+  --primary_color: #100f0e;
+  --secondary_color: #fbc02d;
+  --primary_text: #efeff1;
+  --secondary_text: #fbc02d;
+  --sub_secondary_color: #cc9f2d;
+  --sub_primary_color: #3a3a3d;
+  --hover_sub_primary: #4e4e50;
+  --sub_primary_text: #adadb8;
+}
+
+.comment {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.comment span {
+  font-size: 0.9rem;
+  margin-bottom: 0 !important;
+}
+
+.comment .username {
+  font-size: 1rem;
+  color: var(--secondary_color);
+}
+
+.comment-card-header::-webkit-scrollbar {
+  width: 5px;
+}
+
+.comment-card-header::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+.comment-card-header::-webkit-scrollbar-thumb {
+  background: var(--secondary_color);
+  border-radius: 10px;
+}
