@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {Modal, Button} from 'react-bootstrap'
 import {Form} from 'react-bootstrap'
 import Loading from './Loading';
@@ -10,8 +10,7 @@ export default function LoginPopup(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const [userContext, setUserContext] = useState(UserContext);
-
+    const [, setUserContext] = useContext(UserContext)
 
     const [isLoading, setLoading] = useState(false);
     // must change to 0,1,2 later
@@ -23,6 +22,7 @@ export default function LoginPopup(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
         setLoading(true);
+        setLoaded(true);
 
         axiosPost('/auth/login', {
             username: username,
@@ -33,11 +33,11 @@ export default function LoginPopup(props) {
                     setError('Invalid username or password');
                 }
             } else {
-                setLoaded(true);
                 const data = await response.data;
                 setUserContext(oldValues => {
                     return {...oldValues, token: data.token};
                 });
+
                 //hide loading popup
                 setLoading(false);
                 setLoaded(false);

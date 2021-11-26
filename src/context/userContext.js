@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import {createContext, useState} from 'react';
 
 
 let initialState = {};
 
-const UserContext = React.createContext([{}, () => {
+const UserContext = createContext([{}, () => {
 }]);
 
 

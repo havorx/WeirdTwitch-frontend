@@ -4,7 +4,7 @@ import image from '../../assets/03-glitch.jpg';
 import './Navbar.css';
 import {Search as SearchIcon, Bell as BellIcon} from 'react-feather'
 import {PRIMARY_TEXT} from '../../utils/Const';
-import {useState} from 'react';
+import {useContext, useState} from 'react';
 import {Link} from 'react-router-dom';
 import LoginPopup from '../Authen/LoginPopup';
 import RegisterPopup from '../Authen/RegisterPopup';
@@ -12,11 +12,12 @@ import DropdownUser from './DropdownUser';
 import {UserContext} from "../../context/userContext";
 
 export default function MainNav() {
-
+    const [userContext] = useContext(UserContext)
     const [loginShow, setLoginShow] = useState(false);
     const [registerShow, setRegisterShow] = useState(false);
     const user = true;
     const admin = false;
+    console.log(userContext.token);
     return (
         <Navbar className="d-flex justify-content-between align-items-center"
                 bg="dark" variant="dark" style={{padding: '10px 20px'}} fixed="top"
@@ -37,7 +38,7 @@ export default function MainNav() {
                     <Button className="search-btn" id="basic-addon1"><SearchIcon/></Button>
                 </Col>
                 <Col className="d-flex justify-content-end align-items-center">
-                    {!UserContext.token ?
+                    {!userContext.token ?
                         <>
                             <Button className="me-2 buttonFilledPrimary" variant="outline-none"
                                     onClick={() => {
@@ -73,7 +74,7 @@ export default function MainNav() {
             <LoginPopup show={loginShow} onHide={() => setLoginShow(false)}/>
             <RegisterPopup show={registerShow} onHide={() => setRegisterShow(false)}/>
         </Navbar>
-    )
+    );
 }
 
 // setLoaded

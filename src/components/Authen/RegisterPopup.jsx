@@ -1,8 +1,8 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import {Modal, Button, InputGroup} from 'react-bootstrap'
 import {Form} from 'react-bootstrap'
 import Loading from './Loading';
-import {axiosPost} from "../../utils/AxiosSetup";
+import {myAxios} from "../../utils/AxiosSetup";
 import {UserContext} from "../../context/userContext";
 
 export default function RegisterPopup(props) {
@@ -10,7 +10,8 @@ export default function RegisterPopup(props) {
     const [validated, setValidated] = useState(false);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [userContext, setUserContext] = useState(UserContext);
+    const [error, setError] = useState('');
+    const [, setUserContext] = useState(UserContext);
 
     const [isLoading, setLoading] = useState(false);
     // must change to 0,1,2 later 
@@ -22,26 +23,27 @@ export default function RegisterPopup(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
         setLoading(true);
+        setLoaded(true);
 
-        axiosPost('/auth/signup', {
+        myAxios.post('/auth/signup', {
             username: username,
             password: password
         }).then(async response => {
-            if (!response.ok) {
+            if (response.statusText !== 'OK') {
                 if (response.status === 400) {
-                } else {
-                    setLoaded(true);
-                    const data = await response.json();
-                    setUserContext(oldValues => {
-                        return {...oldValues, token: data.token};
-                    });
-
-                    //hide loading popup
-                    setLoading(false);
-                    setLoaded(false);
-                    //hide login popup
-                    props.onHide();
+                    setError('Invalid username or password');
                 }
+            } else {
+                const data = await response.data;
+                setUserContext(oldValues => {
+                    return {...oldValues, token: data.token};
+                });
+
+                //hide loading popup
+                setLoading(false);
+                setLoaded(false);
+                //hide login popup
+                props.onHide();
             }
         });
     }
@@ -66,21 +68,6 @@ export default function RegisterPopup(props) {
                             <InputGroup hasValidation>
                                 <Form.Control required className="inputLogin" type="text" placeholder="Enter username"
                                               onChange={event => setUsername(event.target.value)}/>
-                                <Form.Control.Feedback type="invalid">
-                                    Please choose a username.
-                                </Form.Control.Feedback>
-                            </InputGroup>
-                        </Form.Group>
-
-                        <Form.Group md="4" controlId="validationCustomUsername">
-                            <Form.Label>Username</Form.Label>
-                            <InputGroup hasValidation>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Username"
-                                    aria-describedby="inputGroupPrepend"
-                                    required
-                                />
                                 <Form.Control.Feedback type="invalid">
                                     Please choose a username.
                                 </Form.Control.Feedback>
