@@ -16,7 +16,7 @@ export default function MainNav() {
     const [loginShow, setLoginShow] = useState(false);
     const [registerShow, setRegisterShow] = useState(false);
     const user = true;
-    const admin = true;
+    const admin = false;
     return (
         <Navbar className="d-flex justify-content-between align-items-center"
                 bg="dark" variant="dark" style={{padding: '10px 20px'}} fixed="top"
@@ -26,7 +26,7 @@ export default function MainNav() {
                     <Link to="/"> <Image className="logo" src={image}/></Link>
                     <Nav className="me-auto" style={{fontSize: '1.4rem', padding: '0px 1.5rem'}}>
                         <Link style={{fontWeight: 600, marginRight: '20px'}} to="/admin">Administrator</Link>
-                        {admin && user && <Link style={{fontWeight: 600}} to="/browse">Browse</Link>}
+                        {UserContext.token && <Link style={{fontWeight: 600}} to="/browse">Browse</Link>}
                     </Nav>
                 </Col>
                 <Col className="d-flex justify-content-center align-items-center">
