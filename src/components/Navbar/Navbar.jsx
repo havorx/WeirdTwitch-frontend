@@ -16,7 +16,7 @@ export default function MainNav() {
     const [loginShow, setLoginShow] = useState(false);
     const [registerShow, setRegisterShow] = useState(false);
     const admin = true;
-    console.log(userContext.token);
+    console.log(userContext);
     return (
         <Navbar className="d-flex justify-content-between align-items-center"
                 bg="dark" variant="dark" style={{padding: '10px 20px'}} fixed="top"

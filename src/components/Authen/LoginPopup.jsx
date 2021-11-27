@@ -34,6 +34,7 @@ export default function LoginPopup(props) {
                 }
             } else {
                 const data = await response.data;
+                console.log(data);
                 setUserContext(oldValues => {
                     return {...oldValues, token: data.token};
                 });
