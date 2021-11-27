@@ -15,11 +15,11 @@ export default function Loading(props) {
                         style={{ width: spinnerSize, height: spinnerSize }}
                     />
                     <br />
-                    <h5 className="position-absolute" style={{ bottom: '60px' }}>Checking ...</h5>
+                    <h5 className="position-absolute" style={{ bottom: '60px' }}>Loading ...</h5>
                 </>
                 : <>
                     <CheckCircle className="mb-3" color={SECONDARY_COLOR} size={105} />
-                    <h5 className="position-absolute" style={{ bottom: '60px' }}>Checked !</h5>
+                    <h5 className="position-absolute" style={{ bottom: '60px' }}>Success !</h5>
                 </>
             }
         </Modal.Body>

@@ -1,6 +1,6 @@
 import React from 'react'
 import './StreamComment.css'
-export default function Comment({message}) {
+export default function Message({message}, {username}) {
     return (
         <div className="comment mb-2">
             <div >
