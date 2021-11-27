@@ -43,8 +43,10 @@ export default function DropdownUser() {
                 <br />
 
                 <Dropdown.Item eventKey="1">
-                    <SettingIcon className="me-2" />
-                    <Link>AirplayIcon</Link>
+                    <Link to="/stream/create">
+                        <AirplayIcon className="me-2" />
+                        Stream
+                    </Link>
                 </Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item eventKey="1">
