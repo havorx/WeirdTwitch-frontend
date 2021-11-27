@@ -4,10 +4,11 @@ import {SUB_PRIMARY_COLOR, SECONDARY_COLOR} from '../../utils/Const';
 import {Send} from 'react-feather';
 import './StreamComment.css';
 import Message from './Message.js';
+import {socket} from '../../services/socketIO.js';
 
 export default function StreamChat({isStreamer}) {
   const [text, setText] = useState('');
-  const [message, setMessage] = useState(['alo', 'text2']);
+  const [message, setMessage] = useState([]);
   const textareaRef = useRef(null);
   const textareaMaxHeight = 150;
 
@@ -19,14 +20,21 @@ export default function StreamChat({isStreamer}) {
 
   }
 
-  function handleClick(event) {
+  function handleClick() {
     if (text !== '') {
-      setMessage(oldMessage => {
-        return [text, ...oldMessage];
-      });
+      socket.emit('send-message', {text: text, roomName: 1});
+      /*   setMessage(oldMessage => {
+           return [text, ...oldMessage];
+         });*/
       setText('');
     }
   }
+
+  useEffect(() => {
+    socket.on('send-message', message => {
+      setMessage(oldMessage => [...oldMessage, message]);
+    });
+  }, []);
 
   function handleOnInput(event) {
     //change input size if text too long

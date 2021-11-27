@@ -3,7 +3,7 @@ import {myAxios} from "../../utils/AxiosSetup";
 import {useEffect, useState} from "react";
 
 export default function Categories() {
-    const [categories, setCategories] = useState([]);
+    const [categories, setCategories] = useState(['Folk','Category']);
 
     function getCategory() {
         myAxios.get('/category/view-category').then(async response => {

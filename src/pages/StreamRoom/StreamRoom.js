@@ -14,10 +14,9 @@ export default function StreamRoom() {
   const [userContext] = useContext(UserContext);
   const isStreamer = state?.isStreamer;
 
-
+  console.log(typeof roomName);
   useEffect(() => {
     socket.emit('join-room', {roomName: roomName, username: userContext.username});
-
   },[]);
 
   return (
