@@ -1,13 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container, Form, Row, Col, Button } from 'react-bootstrap'
-
+import { useNavigate } from "react-router-dom"
 export default function CreateStream() {
+    const navigate = useNavigate();
+    const [roomName, setRoomName] = useState("");
+
+    const handleCreate = (e) => {
+        e.preventDefault();
+        if (true) {
+            navigate(`/stream/room/${roomName}`);
+        }
+    }
+
     return (
         <article>
             <Container className="mt-5">
-                <h5>Create Room</h5>
                 <div className="mt-5 d-flex flex-column justify-content-center align-items-center">
-                    <Form style={{ width: '500px' }}>
+                    <h4 className="mb-3">Create Room</h4>
+                    <Form style={{ width: '500px' }} onSubmit={handleCreate}>
                         <Row className="mb-5">
                             <Form.Group as={Col} md="6" controlId="validationCustom01">
                                 <Form.Label>Room's name</Form.Label>
@@ -15,6 +25,7 @@ export default function CreateStream() {
                                     required
                                     type="text"
                                     placeholder="Room's name"
+                                    onInput={(e) => { setRoomName(e.target.value) }}
                                 />
                             </Form.Group>
                             <Form.Group as={Col} md="6" controlId="validationCustom01">
@@ -28,6 +39,7 @@ export default function CreateStream() {
                         </Row>
                         <Row className="mb-5 px-2">
                             <Form.Control
+                                required
                                 as="textarea"
                                 placeholder="Description"
                                 style={{ minHeight: '100px' }}
@@ -39,7 +51,11 @@ export default function CreateStream() {
                                 <Button style={{ width: '100px' }} className="me-2 buttonOutlined" >Cancel</Button>
                             </Form.Group>
                             <Form.Group as={Col} md="6" controlId="validationCustom01">
-                                <Button style={{ width: '100px' }} className="me-2 buttonFilledSecondary" variant="outline-none">Create</Button>
+                                <Button style={{ width: '100px' }} className="me-2 buttonFilledSecondary" variant="outline-none"
+                                    type="submit"
+                                >
+                                    Create
+                                </Button>
                             </Form.Group>
                         </Row>
                     </Form>

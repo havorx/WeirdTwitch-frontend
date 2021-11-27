@@ -4,7 +4,7 @@ import { SUB_PRIMARY_COLOR, SECONDARY_COLOR } from '../../utils/Const';
 import { Send } from 'react-feather';
 import './StreamComment.css'
 import Comment from './Comment';
-export default function StreamComment() {
+export default function StreamComment({ isStreamer }) {
 
     const textareaRef = useRef(null);
     const textareaMaxHeight = 150;
@@ -55,7 +55,8 @@ export default function StreamComment() {
                         ref={textareaRef}
                         onInput={handleOnInput}
                     />
-                    <div className="d-flex justify-content-end">
+                    <div className={`d-flex ${isStreamer ? 'justify-content-between' : 'justify-content-end'}`}>
+                        {isStreamer && <Button variant="outline-none" style={{ color: SECONDARY_COLOR }}>Donate</Button>}
                         <Button variant="outline-none" style={{ color: SECONDARY_COLOR }}><Send /></Button>
                     </div>
                 </Form>

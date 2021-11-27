@@ -16,7 +16,7 @@ const routes = [
             { path: '/browse', element: <Browse /> },
             { path: '/category/:categoryID', element: <Category /> },
             { path: '/stream/create', element: <CreateStream /> },
-            { path: '/stream/room', element: <StreamRoom /> },
+            { path: '/stream/room/:roomName', element: <StreamRoom /> },
             { path: '/404', element: <NotFound /> },
             { path: '*', element: <Navigate to="/404" /> }
         ]
