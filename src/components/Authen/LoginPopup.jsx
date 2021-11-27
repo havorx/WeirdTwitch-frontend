@@ -1,8 +1,8 @@
-import {useContext, useEffect, useState} from 'react';
+import {useContext, useState} from 'react';
 import {Modal, Button} from 'react-bootstrap'
 import {Form} from 'react-bootstrap'
 import Loading from './Loading';
-import {axiosPost, myAxios} from "../../utils/AxiosSetup";
+import {myAxios} from "../../utils/AxiosSetup";
 import {UserContext} from "../../context/userContext";
 
 export default function LoginPopup(props) {
@@ -24,7 +24,7 @@ export default function LoginPopup(props) {
         setLoading(true);
         setLoaded(true);
 
-        axiosPost('/auth/login', {
+        myAxios.post('/auth/login', {
             username: username,
             password: password
         }).then(async response => {

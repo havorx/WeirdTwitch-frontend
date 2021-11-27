@@ -15,8 +15,7 @@ export default function MainNav() {
     const [userContext] = useContext(UserContext)
     const [loginShow, setLoginShow] = useState(false);
     const [registerShow, setRegisterShow] = useState(false);
-    const user = true;
-    const admin = false;
+    const admin = true;
     console.log(userContext.token);
     return (
         <Navbar className="d-flex justify-content-between align-items-center"
@@ -27,7 +26,7 @@ export default function MainNav() {
                     <Link to="/"> <Image className="logo" src={image}/></Link>
                     <Nav className="me-auto" style={{fontSize: '1.4rem', padding: '0px 1.5rem'}}>
                         <Link style={{fontWeight: 600, marginRight: '20px'}} to="/admin">Administrator</Link>
-                        {UserContext.token && <Link style={{fontWeight: 600}} to="/browse">Browse</Link>}
+                        {userContext.token && <Link style={{fontWeight: 600}} to="/browse">Browse</Link>}
                     </Nav>
                 </Col>
                 <Col className="d-flex justify-content-center align-items-center">
