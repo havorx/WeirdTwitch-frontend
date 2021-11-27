@@ -27,10 +27,10 @@ export default function StreamChat({ isStreamer }) {
     setText("");
   }
 
-  function handleOnInput() {
+  function handleOnInput(event) {
+    //change input size if text too long
     const tx = textareaRef.current;
     tx.style.height = 'auto';
-    console.log(tx.scrollHeight);
     if (tx.scrollHeight < textareaMaxHeight) {
       tx.style.height = (tx.scrollHeight) + 'px';
     } else {
@@ -38,6 +38,8 @@ export default function StreamChat({ isStreamer }) {
         'overflow-y: auto; resize:none; padding-right: 10px');
       tx.style.height = `${textareaMaxHeight}px`;
     }
+    //
+    setText(event.target.value)
   }
 
   useEffect(() => {
@@ -61,7 +63,7 @@ export default function StreamChat({ isStreamer }) {
           padding: '10px 5px',
         }}>
         {message.map(element => (
-          <Comment message={element} />
+          <Comment key={element} message={element} />
         ))}
       </Card.Body>
       <Card.Footer className="mt-2 p-1 card-comment-footer position-relative">
@@ -72,7 +74,6 @@ export default function StreamChat({ isStreamer }) {
             placeholder="Leave a comment here"
             ref={textareaRef}
             onInput={handleOnInput}
-            onChange={event => setText(event.target.value)}
             value={text}
           />
           <div className={`d-flex ${!isStreamer

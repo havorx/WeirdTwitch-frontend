@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Form, Row, Col, Button } from 'react-bootstrap'
 import { myAxios } from "../../utils/AxiosSetup";
-
+import { useNavigate } from 'react-router';
 export default function CreateStream() {
     const [categories, setCategories] = useState([]);
-
+    const [roomName, setRoomName] = useState("");
+    const navigate = useNavigate();
     function getCategory() {
         myAxios.get('/category/get-category').then(response => {
             const data = response.data;
@@ -17,11 +18,15 @@ export default function CreateStream() {
         getCategory();
     }, []);
 
+    const handleCreate = (e) => {
+        navigate(`/stream/room/${roomName}`, { replace: false, state: { isStreamer: true } });
+    }
+
     return (
         <article>
             <Container className="mt-5">
                 <div className="mt-5 d-flex flex-column justify-content-center align-items-center">
-                    <Form style={{ width: '500px' }}>
+                    <Form style={{ width: '500px' }} onSubmit={handleCreate}>
                         <Row className="mb-5">
                             <Form.Group as={Col} md="6" controlId="validationCustom01">
                                 <Form.Label>Room's name</Form.Label>
@@ -29,6 +34,7 @@ export default function CreateStream() {
                                     required
                                     type="text"
                                     placeholder="Choose a name"
+                                    onInput={(e) => { setRoomName(e.target.value) }}
                                 />
                             </Form.Group>
                             <Form.Group as={Col} md="6" controlId="validationCustom01">
@@ -58,7 +64,7 @@ export default function CreateStream() {
                             </Form.Group>
                             <Form.Group as={Col} md="6" controlId="validationCustom01">
                                 <Button style={{ width: '100px' }} className="me-2 buttonFilledSecondary"
-                                    variant="outline-none">Create</Button>
+                                    variant="outline-none" type="submit">Create</Button>
                             </Form.Group>
                         </Row>
                     </Form>
