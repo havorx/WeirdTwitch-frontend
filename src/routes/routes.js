@@ -7,7 +7,11 @@ import NotFound from '../pages/404/NotFound';
 import AdminLayout from '../components/Layouts/AdminLayout';
 import CreateStream from '../pages/CreateStream/CreateStream';
 import StreamRoom from '../pages/StreamRoom/StreamRoom';
+
+const isAdmin = false;
+
 const routes = [
+
     {
         path: '/',
         element: < UserLayout />,
@@ -23,7 +27,7 @@ const routes = [
     },
     {
         path: '/admin',
-        element: < AdminLayout />,
+        element: isAdmin ? < AdminLayout /> : <Navigate to="/" />,
     }
 ];
 

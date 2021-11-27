@@ -10,6 +10,7 @@ export default function StreamRoom() {
   const { roomName } = useParams();
   const { state } = useLocation();
   const isStreamer = state?.isStreamer;
+
   return (
     <article>
       <Container>
