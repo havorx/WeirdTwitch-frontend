@@ -1,6 +1,6 @@
 import React from 'react'
 import './StreamComment.css'
-export default function Comment() {
+export default function Comment({message}) {
     return (
         <div className="comment mb-2">
             <div >
@@ -9,7 +9,7 @@ export default function Comment() {
             <div>
                 <span className="username">Minkle</span>
                 <span>: </span>
-                <span style={{ textAlign: ' justify' }}>Lorem ipsum dolor  quos deleniti officiis iure, iusto rerum fugit fuga necessitatibus assumenda obcaecati, praesentium laboriosam!</span>
+                <span style={{ textAlign: ' justify' }}>{message}</span>
             </div>
         </div>
     )
