@@ -21,7 +21,6 @@ export default function StreamChat({isStreamer}) {
 
   function handleClick(event) {
     if (text !== '') {
-      event.preventDefault();
       setMessage(oldMessage => {
         return [text, ...oldMessage];
       });

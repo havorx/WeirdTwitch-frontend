@@ -22,9 +22,7 @@ export default function CreateStream() {
   }, []);
 
   const handleCreate = () => {
-    socket.emit('create-room', room => {
-      room = roomName;
-    });
+    socket.emit('create-room', 123);
 
     navigate(`/stream/room/${roomName}`,
         {replace: false, state: {isStreamer: true}});
@@ -40,6 +38,7 @@ export default function CreateStream() {
                 <Form.Group as={Col} md="6" controlId="validationCustom01">
                   <Form.Label>Room's name</Form.Label>
                   <Form.Control
+                      autocomplete="off"
                       required
                       type="text"
                       placeholder="Choose a name"
@@ -60,6 +59,7 @@ export default function CreateStream() {
                 <Form.Label>Description</Form.Label>
                 <Row className="mb-5 px-2">
                   <Form.Control
+                      autocomplete="off"
                       as="textarea"
                       placeholder="Enter description"
                       style={{minHeight: '100px'}}
