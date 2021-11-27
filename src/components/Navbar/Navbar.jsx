@@ -39,8 +39,7 @@ export default function MainNav() {
               {userContext.isAdmin && <Link style={{fontWeight: 600, marginRight: '20px'}}
                      to="/admin">Administrator</Link>}
 
-              {userContext.token &&
-              <Link style={{fontWeight: 600}} to="/browse">Browse</Link>}
+              <Link style={{fontWeight: 600}} to="/browse">Browse</Link>
             </Nav>
           </Col>
           <Col className="d-flex justify-content-center align-items-center">
