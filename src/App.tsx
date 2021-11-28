@@ -1,15 +1,15 @@
 import './App.css';
 import routes from './routes/routes';
-import {useRoutes} from 'react-router';
-import {UserProvider} from './context/userContext';
-import {useState} from 'react';
+import { useRoutes } from 'react-router';
+import { UserProvider } from './context/userContext';
+import { useState } from 'react';
 
 function App() {
     const [value, setValue] = useState(null);
-    const content = useRoutes(routes);
+    const content = useRoutes(routes({ isAdmin: true, isUser: true }));
 
     return (
-        <UserProvider value={{value, setValue}}>
+        <UserProvider value={{ value, setValue }}>
             <div className="App ">
                 {content}
             </div>

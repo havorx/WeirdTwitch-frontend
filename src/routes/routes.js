@@ -8,27 +8,26 @@ import AdminLayout from '../components/Layouts/AdminLayout';
 import CreateStream from '../pages/CreateStream/CreateStream';
 import StreamRoom from '../pages/StreamRoom/StreamRoom';
 
-const isAdmin = false;
-
-const routes = [
-
-    {
-        path: '/',
-        element: < UserLayout />,
-        children: [
-            { path: '/', element: <Homepage /> },
-            { path: '/browse', element: <Browse /> },
-            { path: '/category/:categoryID', element: <Category /> },
-            { path: '/stream/create', element: <CreateStream /> },
-            { path: '/stream/room/:roomName', element: <StreamRoom /> },
-            { path: '/404', element: <NotFound /> },
-            { path: '*', element: <Navigate to="/404" /> }
-        ]
-    },
-    {
-        path: '/admin',
-        element: isAdmin ? < AdminLayout /> : <Navigate to="/" />,
-    }
-];
+const routes = ({ isAdmin, isUser }) => {
+    return [
+        {
+            path: '/',
+            element: < UserLayout />,
+            children: [
+                { path: '/', element: <Homepage /> },
+                { path: '/browse', element: <Browse /> },
+                { path: '/category/:categoryID', element: <Category /> },
+                { path: '/stream/create', element: isUser ? <CreateStream /> : <Navigate to="/" /> },
+                { path: '/stream/room/:roomName', element: <StreamRoom /> },
+                { path: '/404', element: <NotFound /> },
+                { path: '*', element: <Navigate to="/404" /> }
+            ]
+        },
+        {
+            path: '/admin',
+            element: isAdmin ? < AdminLayout /> : <Navigate to="/" />,
+        }
+    ];
+}
 
 export default routes;
