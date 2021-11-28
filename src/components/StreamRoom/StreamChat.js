@@ -49,17 +49,26 @@ export default function StreamChat({isStreamer, roomName}) {
   }
 
   useEffect(() => {
-    socket.on('send-message', data => {
-      setMessage(oldMessage => [data, ...oldMessage]);
-    });
-  }, []);
-
-  useEffect(() => {
     resize();
     return () => {
     };
   }, []);
+  useEffect(() => {
+    if (isStreamer === true) {
+      socket.on('host-update-chat', () => {
+        socket.emit('host-updated-chat', 'awdawd');
+      });
+    } else {
+      socket.on('message-for-new-join', data => {
+        setMessage([data]);
+        socket.off('message-for-new-join');
+      });
+    }
 
+    socket.on('send-message', data => {
+      setMessage(oldMessage => [data, ...oldMessage]);
+    });
+  }, []);
   return (
       <Card className="comment-side d-flex justify-content-between"
             style={{background: 'inherit'}}>
