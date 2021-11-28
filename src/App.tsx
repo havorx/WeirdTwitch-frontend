@@ -2,15 +2,16 @@ import './App.css';
 import routes from './routes/routes';
 import { useRoutes } from 'react-router';
 import { UserContext, UserProvider } from './context/userContext';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 function App() {
     const [, setUserContext] = useContext(UserContext)
 
-    //isAdmin, isUser
-    const isAdmin = true;
-    const isUser = true;
-    const content = useRoutes(routes({ isAdmin: isAdmin, isUser: isUser }));
+
+    const isAdmin = false;
+    const isUser = false;
+    const content = useRoutes(routes({ isAdmin: isUser, isUser: isUser }));
+
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -28,6 +29,8 @@ function App() {
         }
 
     }, []);
+
+
     return (
         <UserProvider >
             <div className="App ">
