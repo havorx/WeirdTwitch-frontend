@@ -5,8 +5,8 @@ import StreamChat from '../../components/StreamRoom/StreamChat';
 import { useParams } from 'react-router';
 import { useLocation } from 'react-router';
 import './StreamRoom.css';
-import { socket } from '../../services/socketIO.js';
-import { UserContext } from '../../context/userContext.js';
+import {socket} from '../../services/socketIO.js';
+import {UserContext} from '../../context/userContext.tsx';
 
 export default function StreamRoom() {
   const { roomName } = useParams();

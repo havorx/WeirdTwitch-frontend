@@ -7,10 +7,9 @@ import {
     Airplay as AirplayIcon
 } from 'react-feather';
 import image from '../../assets/03-glitch.jpg';
-import { myAxios } from '../../utils/AxiosSetup';
-import { UserContext } from '../../context/userContext';
+import {myAxios} from '../../utils/AxiosSetup';
+import {UserContext} from '../../context/userContext.tsx';
 import { Link } from 'react-router-dom';
-
 export default function DropdownUser() {
     const [userContext, setUserContext] = useContext(UserContext);
 

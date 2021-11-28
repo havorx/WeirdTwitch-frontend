@@ -17,7 +17,7 @@ import { Link } from 'react-router-dom';
 import LoginPopup from '../Authen/LoginPopup';
 import RegisterPopup from '../Authen/RegisterPopup';
 import DropdownUser from './DropdownUser';
-import { UserContext } from '../../context/userContext';
+import {UserContext} from '../../context/userContext.tsx';
 
 export default function MainNav() {
     const [userContext] = useContext(UserContext);
