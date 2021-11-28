@@ -3,7 +3,7 @@ import {Modal, Button} from 'react-bootstrap';
 import {Form} from 'react-bootstrap';
 import Loading from './Loading';
 import {myAxios} from '../../utils/AxiosSetup';
-import {UserContext} from '../../context/userContext';
+import {UserContext} from '../../context/userContext.tsx';
 
 export default function LoginPopup(props) {
 

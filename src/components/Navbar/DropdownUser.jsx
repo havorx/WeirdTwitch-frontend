@@ -7,7 +7,7 @@ import {
 } from 'react-feather';
 import image from '../../assets/03-glitch.jpg';
 import {myAxios} from '../../utils/AxiosSetup';
-import {UserContext} from '../../context/userContext';
+import {UserContext} from '../../context/userContext.tsx';
 
 export default function DropdownUser() {
   const [userContext, setUserContext] = useContext(UserContext);
