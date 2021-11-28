@@ -16,8 +16,6 @@ export default function StreamChat({isStreamer}) {
     const tx = textareaRef.current;
     tx.setAttribute('style', 'height:' + (tx.scrollHeight) +
         'px; overflow-y:hidden; resize:none; padding-right: 40px');
-    // tx.addEventListener("input", OnInput, false);
-
   }
 
   function handleClick() {
