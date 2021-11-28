@@ -1,4 +1,4 @@
-import {createContext, useState} from 'react';
+import { createContext, useState } from 'react';
 
 
 let initialState = {};
@@ -17,4 +17,4 @@ const UserProvider = (props) => {
     );
 };
 
-export {UserContext, UserProvider};
+export { UserContext, UserProvider };

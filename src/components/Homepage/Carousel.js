@@ -35,9 +35,11 @@ export default function HomepageCarousel() {
         draggable={false}
         className="mt-4">
         {activeRoom.map(element => (
-          <TrendingContent username={element.username}
+          <TrendingContent id={element.roomName} username={element.username}
             roomName={element.roomName} propWidth={'500px'}
-            propPadding={'0 8px'} />
+            propPadding={'0 8px'}
+            key={element.username}
+          />
         ))}
       </Carousel>
     </>

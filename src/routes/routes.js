@@ -7,8 +7,10 @@ import NotFound from '../pages/404/NotFound';
 import AdminLayout from '../components/Layouts/AdminLayout';
 import CreateStream from '../pages/CreateStream/CreateStream';
 import StreamRoom from '../pages/StreamRoom/StreamRoom';
+import { useState } from 'react';
 
 const routes = ({ isAdmin, isUser }) => {
+
     return [
         {
             path: '/',

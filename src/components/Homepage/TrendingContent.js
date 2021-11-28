@@ -22,9 +22,10 @@ export default function TrendingContent({ propWidth, propPadding, username, room
                 </div>
                 <div className="pt-3 pb-2 d-flex flex-wrap justify-content-start ">
                     {/* MAX : 21 */}
-                    {arr.slice(0, 2).map(a =>
-                        <img className="me-2 mb-2" src={image} alt=""
-                            style={{ width: '45px', height: '45px', borderRadius: '100%', border: `2px solid black` }} />
+                    {arr.slice(0, 2).map((a, index) =>
+                        <img key={index} className="me-2 mb-2" src={image} alt=""
+                            style={{ width: '45px', height: '45px', borderRadius: '100%', border: `2px solid black` }}
+                        />
                     )}
                 </div>
             </Card.Header>

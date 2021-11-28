@@ -31,6 +31,7 @@ export default function FeatureUser() {
             width: '100%',
             border: `1px solid ${SUB_PRIMARY_COLOR}`,
           }}
+          key={element.username}
         >
           <Card.Header
             className="d-flex flex-column justify-content-center align-items-center pt-3"
@@ -53,6 +54,7 @@ export default function FeatureUser() {
             <Card.Text>
               {element.category.map(category => {
                 return <a href="*"
+                  key={category}
                   style={{ color: SUB_PRIMARY_TEXT }}>| {category} </a>;
               })}
             </Card.Text>
