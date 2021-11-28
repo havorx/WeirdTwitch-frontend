@@ -14,9 +14,12 @@ export default function DropdownUser() {
 
   const logoutHandler = () => {
     myAxios.get('/auth/logout').then(async response => {
-      if (response.ok) {
+      if (response.statusText === 'OK') {
+        localStorage.removeItem('token');
+        localStorage.removeItem('username');
+        localStorage.removeItem('role');
         setUserContext(oldValues => {
-          return {...oldValues, details: undefined, token: null};
+          return {...oldValues, token: null, username: null, isAdmin: null};
         });
       }
     });
@@ -44,8 +47,8 @@ export default function DropdownUser() {
             Setting
           </Dropdown.Item>
           <Dropdown.Divider/>
-          <Dropdown.Item eventKey="2">
-            <LogOutIcon onClick={logoutHandler} className="me-2"
+          <Dropdown.Item onClick={logoutHandler} eventKey="2">
+            <LogOutIcon className="me-2"
                         style={{transform: 'scaleX(-1)'}}/>
             Log out
           </Dropdown.Item>

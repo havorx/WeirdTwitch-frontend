@@ -34,6 +34,10 @@ export default function LoginPopup(props) {
         }
       } else {
         const data = await response.data;
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('username', username);
+        localStorage.setItem('role', data.role);
+
         setUserContext(oldValues => {
           return {
             ...oldValues,

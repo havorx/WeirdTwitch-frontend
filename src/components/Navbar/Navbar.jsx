@@ -23,7 +23,7 @@ export default function MainNav() {
   const [userContext] = useContext(UserContext);
   const [loginShow, setLoginShow] = useState(false);
   const [registerShow, setRegisterShow] = useState(false);
-  console.log(userContext);
+  console.log(userContext.token);
   return (
       <Navbar className="d-flex justify-content-between align-items-center"
               bg="dark" variant="dark" style={{padding: '10px 20px'}}
