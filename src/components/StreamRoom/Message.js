@@ -7,7 +7,7 @@ export default function Message({message}, {username}) {
                 <span className="time-stamp-comment me-1">11:04</span>
             </div>
             <div>
-                <span className="username">Minkle</span>
+                <span className="username">{username}</span>
                 <span>: </span>
                 <span style={{ textAlign: ' justify' }}>{message}</span>
             </div>
