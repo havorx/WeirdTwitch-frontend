@@ -1,0 +1,28 @@
+import Peer from 'peerjs';
+import {socket} from './socketIO.js';
+
+const peer = new Peer({
+  config: {
+    'iceServers': [
+      {url: 'stun:stun.l.google.com:19302'},
+    ],
+  }, /* Sample servers, please use appropriate ones */
+});
+
+function startStream() {
+  socket.on('join-room', username => {
+    navigator.mediaDevices.getUserMedia({video: false, audio: true},
+        (stream) => {
+          const call = peer.call(`${username}`, stream);
+          call.on('stream', (remoteStream) => {
+            // Show stream in some <video> element.
+          });
+        }, (err) => {
+          console.error('Failed to get local stream', err);
+        });
+  });
+
+  socket.on('leave-room', username => {
+
+  });
+}
