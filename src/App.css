@@ -143,6 +143,12 @@ textarea:focus {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
+.basic-grid-two {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, 420px);
+}
+
 .basic-grid-four {
   display: grid;
   gap: 1rem;
@@ -162,4 +168,16 @@ textarea:focus {
 .card-header {
   border: none !important;
   border-radius: 0 !important;
+}
+
+.background-image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding-top: 100%;
+}
+
+.input-group-text {
+  background-color: inherit !important;
+  border: 1px solid var(--sub_primary_color) !important;
 }

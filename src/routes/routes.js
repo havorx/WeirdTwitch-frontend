@@ -7,6 +7,8 @@ import NotFound from '../pages/404/NotFound';
 import AdminLayout from '../components/Layouts/AdminLayout';
 import CreateStream from '../pages/CreateStream/CreateStream';
 import StreamRoom from '../pages/StreamRoom/StreamRoom';
+import Setting from '../pages/Setting/Setting';
+import { useState } from 'react';
 
 const routes = ({ isAdmin, isUser }) => {
 
@@ -31,11 +33,13 @@ const routes = ({ isAdmin, isUser }) => {
                 { path: '/browse', element: <Browse /> },
                 { path: '/category/:categoryID', element: <Category /> },
                 {
-                    path: '/stream/create', element: <div>
+                    path: '/stream/create',
+                    element: <div>
                         {isUser ? <CreateStream /> : <NotFound />}
                     </div>
                 },
                 { path: '/stream/room/:roomName', element: <StreamRoom /> },
+                { path: '/setting', element: <Setting /> },
                 { path: '/404', element: <NotFound /> },
                 { path: '*', element: <Navigate to="/404" /> }
             ]
