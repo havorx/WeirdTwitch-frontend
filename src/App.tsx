@@ -1,22 +1,17 @@
 import './App.css';
 import routes from './routes/routes';
 import { useRoutes } from 'react-router';
-import { UserContext, UserProvider } from './context/userContext';
-import { useContext, useEffect, useState } from 'react';
+import { UserProvider } from './context/userContext';
+import { useEffect} from 'react';
 
 function App() {
-    const [userContext, setUserContext] = useContext(UserContext)
+    const token = localStorage.getItem('token');
+    const role = localStorage.getItem('role');
+    const isUser = !!token;
+    const isAdmin = role === 'admin';
+    console.log(token);
 
-
-    const isAdmin = false;
-    const isUser = false;
-    const content = useRoutes(routes({ isAdmin: isUser, isUser: isUser }));
-
-
-    useEffect(() => {
-
-        console.log(userContext);
-    }, []);
+    const content = useRoutes(routes({ isAdmin: isAdmin, isUser: isUser }));
 
     return (
         <UserProvider >
