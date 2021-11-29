@@ -17,8 +17,8 @@ import { Link } from 'react-router-dom';
 import LoginPopup from '../Authen/LoginPopup';
 import RegisterPopup from '../Authen/RegisterPopup';
 import DropdownUser from './DropdownUser';
-import {UserContext} from '../../context/userContext.tsx';
-
+import { UserContext } from '../../context/userContext.tsx';
+// !userContext.token
 export default function MainNav() {
     const [userContext] = useContext(UserContext);
     const [loginShow, setLoginShow] = useState(false);
