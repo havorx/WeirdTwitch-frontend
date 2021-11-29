@@ -1,11 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Container, Form, Row, Col, Button} from 'react-bootstrap';
 import {myAxios} from '../../utils/AxiosSetup';
 import {useNavigate} from 'react-router';
 import {socket} from '../../services/socketIO.js';
+import {UserContext} from '../../context/userContext.tsx';
 
 export default function CreateStream() {
   const [categories, setCategories] = useState([]);
+  const [userContext] = useContext(UserContext);
+  const [roomDescription, setRoomDescription] = useState('');
+  const [category, setCategory] = useState('');
   const [roomName, setRoomName] = useState('');
   const navigate = useNavigate();
 
@@ -22,10 +26,21 @@ export default function CreateStream() {
   }, []);
 
   const handleCreate = () => {
-    socket.emit('create-room', 123);
 
-    navigate(`/stream/room/${roomName}`,
-        {replace: false, state: {isStreamer: true}});
+    myAxios.post('/rooms/create-room', {
+      roomName: roomName,
+      roomDescription: roomDescription,
+      category: category,
+      roomHost: userContext.username,
+    }).then(response => {
+      if (response.statusText !== 'OK') {
+        console.log(response.data)
+      } else if (response.status === 200){
+        socket.emit('create-room', roomName);
+        navigate(`/stream/room/${roomName}`,
+            {replace: false, state: {isStreamer: true}});
+      }
+    });
   };
 
   return (
@@ -47,7 +62,9 @@ export default function CreateStream() {
                 </Form.Group>
                 <Form.Group as={Col} md="6" controlId="validationCustom01">
                   <Form.Label>Category</Form.Label>
-                  <Form.Select required>
+                  <Form.Select
+                      onSelect={event => setCategory(event.target.value)}
+                      required>
                     <option>Select a category</option>
                     {categories.map(element => (
                         <option>{element}</option>
@@ -63,6 +80,7 @@ export default function CreateStream() {
                       as="textarea"
                       placeholder="Enter description"
                       style={{minHeight: '100px'}}
+                      onChange={event => {setRoomDescription(event.target.value)}}
                   />
                 </Row>
               </Form.Group>

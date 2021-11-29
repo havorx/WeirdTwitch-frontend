@@ -22,20 +22,13 @@ export default function UserEditDialog(props) {
             </Modal.Header>
             <Modal.Body style={{ backgroundColor: '#18181b', paddingBottom: '40px' }}>
                 <Form onSubmit={handleSubmit}>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control type="email" placeholder="Enter user email" />
-                    </Form.Group>
+
                     <Form.Group className="mb-3" controlId="formBasicSelect">
                         <Form.Label>Status</Form.Label>
                         <Form.Select aria-label="Floating label select example" style={{ backgroundColor: SUB_PRIMARY_COLOR, color: PRIMARY_TEXT }}>
                             <option value="active">Active</option>
                             <option value="disable">Disable</option>
                         </Form.Select>
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicText">
-                        <Form.Label>Fullname</Form.Label>
-                        <Form.Control type="text" placeholder="Enter user fullname" />
                     </Form.Group>
                     <Button className="mt-3 w-100 buttonFilledSecondary" variant="outline-none" type="submit">
                         <b> Submit</b>

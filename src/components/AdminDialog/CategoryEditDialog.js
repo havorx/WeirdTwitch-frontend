@@ -25,10 +25,6 @@ export default function CategoryEditDialog(props) {
                         <Form.Label>Category Name</Form.Label>
                         <Form.Control type="text" placeholder="Enter category name" />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicNumber">
-                        <Form.Label>Followers</Form.Label>
-                        <Form.Control min="0" type="number" placeholder="Enter followers" />
-                    </Form.Group>
                     <Button className="mt-3 w-100 buttonFilledSecondary" variant="outline-none" type="submit">
                         <b> Submit</b>
                     </Button>

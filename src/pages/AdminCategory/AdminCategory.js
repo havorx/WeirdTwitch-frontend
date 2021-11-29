@@ -11,15 +11,15 @@ export default function AdminCategory() {
         {
             id: '1',
             categoryName: 'Category Name',
-            followers: 'Followers'
+            followers: '1'
         }, {
             id: '1',
             categoryName: 'Category Name',
-            followers: 'Followers'
+            followers: '1'
         }, {
             id: '1',
             categoryName: 'Category Name',
-            followers: 'Followers'
+            followers: '1'
         },
     ]
 

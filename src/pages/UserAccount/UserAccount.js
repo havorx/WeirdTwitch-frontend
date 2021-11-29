@@ -17,13 +17,6 @@ export default function UserAccount() {
             status: 'Activated',
             fullName: 'Minkle'
         },
-        {
-            id: '2',
-            username: 'account 1',
-            email: 'awdjaw@oaw.co',
-            status: 'Activated',
-            fullName: 'Minkle'
-        }
     ]
 
     const handleEdit = (id) => {
@@ -44,7 +37,6 @@ export default function UserAccount() {
                 <thead>
                     <tr>
                         <th>Username</th>
-                        <th>Email</th>
                         <th>Status</th>
                         <th>Full name</th>
                         <th>Action</th>
@@ -54,7 +46,6 @@ export default function UserAccount() {
                     {data && data.map((el) => {
                         return <tr key={el.id}>
                             <td>{el.username}</td>
-                            <td>{el.email}</td>
                             <td>{el.status}</td>
                             <td>{el.fullName}</td>
                             <td colSpan="1">

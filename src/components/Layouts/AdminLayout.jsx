@@ -33,7 +33,7 @@ export default function AdminLayout() {
                         <Tab eventKey="category" title="Category" tabClassName="tabs-color">
                             <AdminCategory />
                         </Tab>
-                        <Tab eventKey="contact" title="Contact" tabClassName="tabs-color">
+                        <Tab eventKey="Livestream" title="Current live streaming" tabClassName="tabs-color">
                             <AdminLiveStream />
                         </Tab>
                     </Tabs>
