@@ -1,12 +1,14 @@
-import React, {useRef, useEffect, useState} from 'react';
+import React, {useRef, useEffect, useState, useContext} from 'react';
 import {Card, Button, Form} from 'react-bootstrap';
 import {SUB_PRIMARY_COLOR, SECONDARY_COLOR} from '../../utils/Const';
 import {Send} from 'react-feather';
 import './StreamComment.css';
 import Message from './Message.js';
 import {socket} from '../../services/socketIO.js';
+import {UserContext} from '../../context/userContext.tsx';
 
-export default function StreamChat({isStreamer}) {
+export default function StreamChat({isStreamer, roomName}) {
+  const [userContext] = useContext(UserContext);
   const [text, setText] = useState('');
   const [message, setMessage] = useState([]);
   const textareaRef = useRef(null);
@@ -20,19 +22,16 @@ export default function StreamChat({isStreamer}) {
 
   function handleClick() {
     if (text !== '') {
-      socket.emit('send-message', {text: text, roomName: 1});
+      const data = {
+        text: text, roomName: roomName, username: userContext.username,
+      };
+      socket.emit('send-message', data);
       /*   setMessage(oldMessage => {
            return [text, ...oldMessage];
          });*/
       setText('');
     }
   }
-
-  useEffect(() => {
-    socket.on('send-message', message => {
-      setMessage(oldMessage => [...oldMessage, message]);
-    });
-  }, []);
 
   function handleOnInput(event) {
     //change input size if text too long
@@ -54,7 +53,22 @@ export default function StreamChat({isStreamer}) {
     return () => {
     };
   }, []);
+  useEffect(() => {
+    if (isStreamer === true) {
+      socket.on('host-update-chat', () => {
+        socket.emit('host-updated-chat', 'awdawd');
+      });
+    } else {
+      socket.on('message-for-new-join', data => {
+        setMessage([data]);
+        socket.off('message-for-new-join');
+      });
+    }
 
+    socket.on('send-message', data => {
+      setMessage(oldMessage => [data, ...oldMessage]);
+    });
+  }, []);
   return (
       <Card className="comment-side d-flex justify-content-between"
             style={{background: 'inherit'}}>
@@ -70,7 +84,8 @@ export default function StreamChat({isStreamer}) {
               padding: '10px 5px',
             }}>
           {message.map(element => (
-              <Message key={element} message={element}/>
+              <Message key={element} username={element.username}
+                       message={element.text}/>
           ))}
         </Card.Body>
         <Card.Footer className="mt-2 p-1 card-comment-footer position-relative">

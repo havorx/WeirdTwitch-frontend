@@ -52,7 +52,7 @@ export default function MainNav() {
                         id="basic-addon1"><SearchIcon /></Button>
                 </Col>
                 <Col className="d-flex justify-content-end align-items-center">
-                    {!true ?
+                    {!userContext.token ?
                         <>
                             <Button className="me-2 buttonFilledPrimary"
                                 variant="outline-none"
