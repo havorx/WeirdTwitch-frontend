@@ -9,6 +9,7 @@ export default function RegisterPopup(props) {
 
   const [validated, setValidated] = useState(false);
   const [username, setUsername] = useState('');
+  const [fullName, setFullName] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [, setUserContext] = useState(UserContext);
@@ -79,6 +80,19 @@ export default function RegisterPopup(props) {
                                     event.target.value)}/>
                   <Form.Control.Feedback type="invalid">
                     Please choose a username.
+                  </Form.Control.Feedback>
+                </InputGroup>
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="validationCustomFullName">
+                <Form.Label>Full Name</Form.Label>
+                <InputGroup hasValidation>
+                  <Form.Control required className="inputLogin" type="text"
+                                placeholder="Enter username"
+                                onChange={event => setFullName(
+                                    event.target.value)}/>
+                  <Form.Control.Feedback type="invalid">
+                    Please enter your full name.
                   </Form.Control.Feedback>
                 </InputGroup>
               </Form.Group>

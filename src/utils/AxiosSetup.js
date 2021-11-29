@@ -23,7 +23,7 @@ myAxios.interceptors.response.use(function (response) {
         return myAxios.request(error.config);
     }
     //if error code = 6969 (refreshToken failure) -> remove existing token and redirect to homepage
-    else if (error.response && error.response.status && error.response.status === 6969) {
+    else if (error.response && error.response.data === 'refreshToken not found' && error.response.status === 404) {
         localStorage.removeItem('token')
         window.location = "/"
     }

@@ -22,10 +22,6 @@ export default function UserEditDialog(props) {
             </Modal.Header>
             <Modal.Body style={{ backgroundColor: '#18181b', paddingBottom: '40px' }}>
                 <Form onSubmit={handleSubmit}>
-                    <Form.Group className="mb-3" controlId="formBasicText">
-                        <Form.Label>Username</Form.Label>
-                        <Form.Control type="text" placeholder="Enter user name" />
-                    </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email</Form.Label>
                         <Form.Control type="email" placeholder="Enter user email" />

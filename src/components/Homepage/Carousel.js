@@ -7,7 +7,7 @@ export default function HomepageCarousel() {
   const activeRoom = [
     {
       username: 'MinkLee',
-      roomName: 'Chaturbate',
+      roomName: 'Folk story',
     }];
 
   const responsive = {
