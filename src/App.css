@@ -181,3 +181,7 @@ textarea:focus {
   background-color: inherit !important;
   border: 1px solid var(--sub_primary_color) !important;
 }
+
+#nav-dropdown-dark-example {
+  padding: 0 !important;
+}

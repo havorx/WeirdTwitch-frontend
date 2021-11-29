@@ -6,7 +6,7 @@ import EditProfile from './EditProfile';
 const BLUR_TEXT_COLOR = "#8b949e";
 export default function Profile() {
 
-    const [isEdit, setIsEdit] = useState(true);
+    const [isEdit, setIsEdit] = useState(false);
 
 
     return (
