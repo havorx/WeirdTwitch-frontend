@@ -1,13 +1,13 @@
-import React, {useRef, useEffect, useState, useContext} from 'react';
-import {Card, Button, Form} from 'react-bootstrap';
-import {SUB_PRIMARY_COLOR, SECONDARY_COLOR} from '../../utils/Const';
-import {Send} from 'react-feather';
+import React, { useRef, useEffect, useState, useContext } from 'react';
+import { Card, Button, Form } from 'react-bootstrap';
+import { SUB_PRIMARY_COLOR, SECONDARY_COLOR } from '../../utils/Const';
+import { Send } from 'react-feather';
 import './StreamComment.css';
 import Message from './Message.js';
-import {socket} from '../../services/socketIO.js';
-import {UserContext} from '../../context/userContext.tsx';
-
-export default function StreamChat({isStreamer, roomName}) {
+import { socket } from '../../services/socketIO.js';
+import { UserContext } from '../../context/userContext.tsx';
+import EventDropdown from './EventDropdown';
+export default function StreamChat({ isStreamer, roomName, setTopic }) {
   const [userContext] = useContext(UserContext);
   const [text, setText] = useState('');
   const [message, setMessage] = useState([]);
@@ -17,7 +17,7 @@ export default function StreamChat({isStreamer, roomName}) {
   function resize() {
     const tx = textareaRef.current;
     tx.setAttribute('style', 'height:' + (tx.scrollHeight) +
-        'px; overflow-y:hidden; resize:none; padding-right: 40px');
+      'px; overflow-y:hidden; resize:none; padding-right: 40px');
   }
 
   function handleClick() {
@@ -41,7 +41,7 @@ export default function StreamChat({isStreamer, roomName}) {
       tx.style.height = (tx.scrollHeight) + 'px';
     } else {
       tx.setAttribute('style',
-          'overflow-y: auto; resize:none; padding-right: 10px');
+        'overflow-y: auto; resize:none; padding-right: 10px');
       tx.style.height = `${textareaMaxHeight}px`;
     }
     //
@@ -70,44 +70,46 @@ export default function StreamChat({isStreamer, roomName}) {
     });
   }, []);
   return (
-      <Card className="comment-side d-flex justify-content-between"
-            style={{background: 'inherit'}}>
-        <Card.Header className="card-header"
-                     style={{backgroundColor: `${SUB_PRIMARY_COLOR}`}}>
-          <h5 className="mb-0">Chat</h5>
-        </Card.Header>
-        <Card.Body
-            className="comment-card-header d-flex flex-wrap-nowrap flex-column-reverse "
-            style={{
-              overflowX: 'hidden',
-              overflowY: 'auto',
-              padding: '10px 5px',
-            }}>
-          {message.map(element => (
-              <Message key={element} username={element.username}
-                       message={element.text}/>
-          ))}
-        </Card.Body>
-        <Card.Footer className="mt-2 p-1 card-comment-footer position-relative">
-          <Form>
-            <Form.Control
-                className="comment-input"
-                as="textarea"
-                placeholder="Leave a comment here"
-                ref={textareaRef}
-                onInput={handleOnInput}
-                value={text}
-            />
-            <div className={`d-flex ${!isStreamer
-                ? 'justify-content-between'
-                : 'justify-content-end'}`}>
-              {!isStreamer && <Button variant="outline-none"
-                                      style={{color: SECONDARY_COLOR}}>Donate</Button>}
-              <Button variant="outline-none" onClick={handleClick}
-                      style={{color: SECONDARY_COLOR}}><Send/></Button>
-            </div>
-          </Form>
-        </Card.Footer>
-      </Card>
+    <Card className="comment-side d-flex justify-content-between"
+      style={{ background: 'inherit' }}>
+      <Card.Header className="card-header"
+        style={{ backgroundColor: `${SUB_PRIMARY_COLOR}` }}>
+        <h5 className="mb-0">Chat</h5>
+      </Card.Header>
+      <Card.Body
+        className="comment-card-header d-flex flex-wrap-nowrap flex-column-reverse "
+        style={{
+          overflowX: 'hidden',
+          overflowY: 'auto',
+          padding: '10px 5px',
+        }}>
+        {message.map(element => (
+          <Message key={element} username={element.username}
+            message={element.text} />
+        ))}
+      </Card.Body>
+      <Card.Footer className="mt-2 p-1 card-comment-footer position-relative">
+        <Form>
+          <Form.Control
+            className="comment-input"
+            as="textarea"
+            placeholder="Leave a comment here"
+            ref={textareaRef}
+            onInput={handleOnInput}
+            value={text}
+          />
+          <div className={`d-flex justify-content-between`}>
+            {!isStreamer && <Button variant="outline-none"
+              style={{ color: SECONDARY_COLOR }}>Donate
+            </Button>
+            }
+            {isStreamer && <EventDropdown setTopic={setTopic} />
+            }
+            <Button variant="outline-none" onClick={handleClick}
+              style={{ color: SECONDARY_COLOR }}><Send /></Button>
+          </div>
+        </Form>
+      </Card.Footer>
+    </Card>
   );
 }

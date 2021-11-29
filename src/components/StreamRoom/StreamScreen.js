@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Card, Button } from 'react-bootstrap'
 import { Radio as RadioIcon, Mic, PhoneOff } from 'react-feather'
-import { SUB_PRIMARY_COLOR, SECONDARY_COLOR } from '../../utils/Const';
-export default function StreamScreen({ roomName, isStreamer }) {
+import { SUB_PRIMARY_COLOR, SECONDARY_COLOR, PRIMARY_COLOR, PRIMARY_TEXT } from '../../utils/Const';
+import { Link } from 'react-router-dom';
+import { X as XIcon } from 'react-feather';
+import image from '../../assets/03-glitch.jpg'
+export default function StreamScreen({ roomName, isStreamer, topic, setTopic }) {
+    const biegeColor = "#484747fa"
 
     return (
         <Card className="comment-side d-flex justify-content-between" style={{ backgroundColor: `${SUB_PRIMARY_COLOR}` }}>
@@ -16,11 +20,42 @@ export default function StreamScreen({ roomName, isStreamer }) {
                     </div>
                 </div>
             </Card.Header>
-            {isStreamer && <Card.Footer className="d-flex justify-content-center align-items-center" style={{ backgroundColor: '#232323', border: 'none' }}>
-                <Button className="audio-btn" variant="outline-none"><Mic /></Button>
-                <Button className="audio-btn red-btn" variant="outline-none"><PhoneOff /></Button>
-            </Card.Footer>}
+            <Card.Body
+                className="background-image h-100 d-flex justify-content-center align-items-center"
+                style={{ backgroundImage: `url(${image})` }}
+            >
+                <div style={{ width: '300px' }}>
+                    {topic && <Card style={{ backgroundColor: `${biegeColor}` }}>
+                        <Card.Header >
+                            <div className="d-flex justify-content-between">
+                                <h5 className="mb-0" >{topic.topicName}</h5>
+                                {
+                                    isStreamer && <Button variant="outline-none" className="p-0"
+                                        style={{ color: `${PRIMARY_TEXT}` }}
+                                        onClick={() => { setTopic(null) }}
+                                    >
+                                        <XIcon size={20} />
+                                    </Button>
+                                }
+                            </div>
+                        </Card.Header>
+                        <Card.Body>
+                            <p className="mb-0">{topic.topicDesc}</p>
+                        </Card.Body>
+                    </Card>}
+                </div>
+            </Card.Body>
+            {
+                isStreamer && <Card.Footer className="d-flex justify-content-center align-items-center" style={{ backgroundColor: '#232323', border: 'none' }}>
+                    <Button className="audio-btn" variant="outline-none"><Mic /></Button>
+                    <Button className="audio-btn red-btn" variant="outline-none">
+                        <Link to="/">
+                            <PhoneOff />
+                        </Link>
+                    </Button>
+                </Card.Footer>
+            }
 
-        </Card>
+        </Card >
     )
 }
