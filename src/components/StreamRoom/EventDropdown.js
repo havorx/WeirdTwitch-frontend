@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { DropdownButton, NavDropdown, Dropdown } from 'react-bootstrap'
+import { NavDropdown, Dropdown } from 'react-bootstrap'
 import EventDialog from './EventDialog';
 export default function EventDropdown({ setTopic }) {
 
@@ -13,6 +13,7 @@ export default function EventDropdown({ setTopic }) {
                 id="nav-dropdown-dark-example"
                 title="Events"
                 menuVariant="dark"
+                className="px-2 py-3"
             >
                 <Dropdown.Item eventKey="1" onClick={() => { setOpenTopic(true) }}>Create Topic</Dropdown.Item>
             </NavDropdown>

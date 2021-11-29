@@ -10,6 +10,7 @@ import image from '../../assets/03-glitch.jpg';
 import { myAxios } from '../../utils/AxiosSetup';
 import { UserContext } from '../../context/userContext.tsx';
 import { Link } from 'react-router-dom';
+import { SECONDARY_COLOR } from '../../utils/Const';
 export default function DropdownUser() {
   const [userContext, setUserContext] = useContext(UserContext);
 
@@ -43,15 +44,22 @@ export default function DropdownUser() {
           <b>{userContext.username}</b>
         </div>
         <br />
-        <br />
-        <Dropdown.Item eventKey="1">
-          <AirplayIcon className="me-2" />
-          <Link to="/stream/create">Stream</Link>
+        <p className=" px-3">
+          <span style={{ color: `${SECONDARY_COLOR}` }}>Credit: </span>
+          1.000
+        </p>
+        <Dropdown.Item eventKey="1" style={{ padding: 0 }}>
+          <Link to="/stream/create" className="d-block px-3 py-2">
+            <AirplayIcon className="me-2" />
+            Stream
+          </Link>
         </Dropdown.Item>
         <Dropdown.Divider />
-        <Dropdown.Item eventKey="1">
-          <SettingIcon className="me-2" />
-          <Link to="/setting">Setting</Link>
+        <Dropdown.Item eventKey="1" style={{ padding: 0 }}>
+          <Link to="/setting" className="d-block  px-3 py-2" style={{}}>
+            <SettingIcon className="me-2" />
+            Setting
+          </Link>
         </Dropdown.Item>
         <Dropdown.Divider />
         <Dropdown.Item onClick={logoutHandler} eventKey="2">
