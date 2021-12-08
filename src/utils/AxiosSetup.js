@@ -2,6 +2,7 @@ const axios = require('axios');
 
 export const myAxios = axios.create({
     baseURL: 'http://localhost:5000',
+    withCredentials: true
 });
 
 //every request must have authorization header (token and refreshToken)
@@ -14,19 +15,30 @@ myAxios.interceptors.request.use(function (config) {
 myAxios.interceptors.response.use(function (response) {
     return response;
 }, async function (error) {
-    /* if error code = 401 (token failure) -> get new token using refreshToken and redo the previous request using 
-     new token*/
-    if (error.response && error.response.status && error.response.status === 401) {
-        const {data} = await axiosPost('/refreshToken', {})
-        localStorage.setItem('token', JSON.stringify(data.user));
-        error.config.headers['Authorization'] = 'Bearer ' + JSON.stringify(data.user);
-        return myAxios.request(error.config);
+    if (error.response) {
+        /* if error code = 401 (token failure) -> get new token using refreshToken and redo the previous request using
+            new token*/
+        if (error.response.statusText === 'Unauthorized' && error.response.status === 401) {
+            const {data} = await axiosPost('/refreshToken', {});
+            localStorage.setItem('token', data.token);
+            error.config.headers['Authorization'] = 'Bearer ' + data.token;
+            return myAxios.request(error.config);
+        }
+        //if error code = 404 (refreshToken failure) -> remove existing token and redirect to homepage
+        else if ((error.response.status === 404 && (error.response.data === 'refreshToken not found' || error.response.data === 'User not found')) ||
+            (error.response.status === 400 && error.response.data === 'no refreshToken in request')
+        ) {
+            localStorage.removeItem('token');
+            console.log(error);
+            if (error.response) {
+                localStorage.removeItem('token');
+                localStorage.removeItem('username');
+                localStorage.removeItem('role');
+            }
+            // window.location = "/"
+        }
     }
-    //if error code = 6969 (refreshToken failure) -> remove existing token and redirect to homepage
-    else if (error.response && error.response.data === 'refreshToken not found' && error.response.status === 404) {
-        localStorage.removeItem('token')
-        window.location = "/"
-    }
+
     //other error
     else {
         return Promise.reject(error);

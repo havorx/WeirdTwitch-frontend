@@ -1,16 +1,18 @@
-import { Button } from 'react-bootstrap';
-import { myAxios } from "../../utils/AxiosSetup";
-import { useEffect, useState } from "react";
+import {Button} from 'react-bootstrap';
+import {myAxios} from "../../utils/AxiosSetup";
+import {useEffect, useState} from "react";
 
 export default function Categories() {
-    const [categories, setCategories] = useState(['Folk', 'Category']);
+    const [categories, setCategories] = useState([]);
 
     function getCategory() {
         myAxios.get('/category/view-category').then(async response => {
-            if (response.statusText === 'OK') {
-                const data = await response.data;
-                const categoryList = data.map(element => element.categoryName);
-                setCategories(categoryList);
+            if (response) {
+                if (response.statusText === 'OK') {
+                    const data = await response.data;
+                    const categoryList = data.map(element => element.categoryName);
+                    setCategories(categoryList);
+                }
             }
         });
     }
@@ -22,7 +24,7 @@ export default function Categories() {
     return (
         <div className="d-flex flex-wrap mt-4">
             {categories.map((e) => (
-                <Button key={e} className="me-3 mb-3 buttonOutlined" style={{ borderRadius: '20px' }}>
+                <Button key={e} className="me-3 mb-3 buttonOutlined" style={{borderRadius: '20px'}}>
                     <b>{e}</b>
                 </Button>
             ))}
