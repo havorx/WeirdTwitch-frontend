@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import image from '../../assets/03-glitch.jpg';
-import { Button } from 'react-bootstrap';
-import { SUB_PRIMARY_COLOR } from '../../utils/Const';
+import {Button} from 'react-bootstrap';
+import {SUB_PRIMARY_COLOR} from '../../utils/Const';
 import EditProfile from './EditProfile';
+
 const BLUR_TEXT_COLOR = "#8b949e";
-export default function Profile() {
+export default function Profile({username}) {
 
     const [isEdit, setIsEdit] = useState(false);
 
@@ -19,16 +20,19 @@ export default function Profile() {
                     boxShadow: `0 0 0 1px ${SUB_PRIMARY_COLOR}`,
                     backgroundImage: `url(${image})`
                 }}
-            ></div>
-            <h4 className="py-4" style={{ color: `${BLUR_TEXT_COLOR}` }}>Username</h4>
+            />
+            <h4 className="py-4" style={{color: `${BLUR_TEXT_COLOR}`}}>{username}</h4>
             <div className="mb-3">
                 {isEdit ?
-                    <EditProfile setIsEdit={setIsEdit}></EditProfile>
+                    <EditProfile setIsEdit={setIsEdit}
+                                 username={username}/>
                     : <Button className="w-100 buttonFilledSecondary" variant="outline-none"
-                        onClick={() => { setIsEdit(true) }}>
-                        <b>  Edit profile</b>
+                              onClick={() => {
+                                  setIsEdit(true)
+                              }}>
+                        <b> Edit profile</b>
                     </Button>}
             </div>
-        </aside >
+        </aside>
     )
 }

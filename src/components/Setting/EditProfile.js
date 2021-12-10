@@ -1,13 +1,13 @@
 import React from 'react'
 import { Form, Button } from 'react-bootstrap'
-export default function EditProfile({ setIsEdit }) {
+export default function EditProfile({ setIsEdit, username }) {
     return (
         <>
             <h5>Change username</h5>
             <Form>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                     <Form.Label>Username</Form.Label>
-                    <Form.Control type="email" placeholder="Name" />
+                    <Form.Control type="email" placeholder={username} />
                 </Form.Group>
                 <Button className="buttonFilledSecondary me-2" variant="outline-none">Save</Button>
             </Form>
