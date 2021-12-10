@@ -52,7 +52,11 @@ export default function Category() {
                 </section>
                 <section className="mb-4">
                     <h5>Live</h5>
-                    <TrendingContent propWidth={"100%"} />
+                    <div className="basic-grid">
+                        <TrendingContent propWidth={"100%"} />
+
+                    </div>
+
                     {activeRooms.length !== 0 && <div className="basic-grid">
                         {/*  <TrendingContent propWidth={"100%"} />
                         <TrendingContent propWidth={"100%"} />
