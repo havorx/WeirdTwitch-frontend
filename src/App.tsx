@@ -16,22 +16,12 @@ function App() {
     const content = useRoutes(routes({isAdmin: isAdmin, isUser: isUser}));
 
     function verifyUser() {
-        myAxios.post('/auth/refreshToken', {}).then(async (response: any) => {
+        const refreshToken = localStorage.getItem('refreshToken');
+        myAxios.post('/auth/refreshToken', {refreshToken}).then(async (response: any) => {
             if (response) {
                 if (response.statusText === 'OK') {
                     const data = await response.data;
-                    localStorage.setItem('token', data.token);
-                    localStorage.setItem('username', data.username);
-                    localStorage.setItem('role', data.role);
-
-                    setUserContext(oldValues => {
-                        return {
-                            ...oldValues,
-                            token: data.token,
-                            username: data.username,
-                            isAdmin: data.role === 'admin',
-                        };
-                    });
+                    localStorage.setItem('refreshToken', data.refreshToken);
                 }
             }
         });

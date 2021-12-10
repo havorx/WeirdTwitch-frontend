@@ -11,19 +11,24 @@ import {myAxios} from '../../utils/AxiosSetup';
 import {UserContext} from '../../context/userContext.tsx';
 import {Link} from 'react-router-dom';
 import {SECONDARY_COLOR} from '../../utils/Const';
+import Avatar from "react-avatar";
 
 export default function DropdownUser() {
     const [userContext, setUserContext] = useContext(UserContext);
 
     const logoutHandler = () => {
         myAxios.get('/auth/logout').then(async response => {
-            if (response.statusText === 'OK') {
-                localStorage.removeItem('token');
-                localStorage.removeItem('username');
-                localStorage.removeItem('role');
-                setUserContext(oldValues => {
-                    return {...oldValues, token: null, username: null, isAdmin: null};
-                });
+            if (response) {
+                if (response.statusText === 'OK') {
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('username');
+                    localStorage.removeItem('role');
+                    localStorage.removeItem('refreshToken');
+                    localStorage.removeItem('credits');
+                    setUserContext(() => {
+                        return {};
+                    });
+                }
             }
         });
     }
@@ -35,19 +40,23 @@ export default function DropdownUser() {
             <div className="px-1 py-2">
                 <div className="d-flex align-items-center"
                      style={{padding: '0 16px'}}>
-                    <Image style={{
+                    {/*     <Image style={{
                         height: '40px',
                         width: '40px',
                         borderRadius: '100%',
                         marginRight: '10px',
                     }}
-                           src={image}/>
+                           src={image}/>*/}
+                    <Avatar name={userContext.username}
+                            textSizeRatio={1.8}
+                            round={true} size={"40px"}
+                            style={{marginRight: "10px"}}/>
                     <b>{userContext.username}</b>
                 </div>
                 <br/>
                 <p className=" px-3">
                     <span style={{color: `${SECONDARY_COLOR}`}}>Credit: </span>
-                    1.000
+                    {userContext.credits}
                 </p>
                 <Dropdown.Item eventKey="1" style={{padding: 0}}>
                     <Link to="/stream/create" className="d-block px-3 py-2">
@@ -70,6 +79,6 @@ export default function DropdownUser() {
                 </Dropdown.Item>
             </div>
         </DropdownButton>
-    )
+    );
 
 }

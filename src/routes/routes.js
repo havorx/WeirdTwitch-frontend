@@ -31,7 +31,7 @@ const routes = ({ isAdmin, isUser }) => {
             children: [
                 { path: '/', element: <Homepage /> },
                 { path: '/browse', element: <Browse /> },
-                { path: '/category/:categoryID', element: <Category /> },
+                { path: '/category/:categoryName', element: <Category /> },
                 {
                     path: '/stream/create',
                     element: <div>

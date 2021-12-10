@@ -11,8 +11,8 @@ export default function LoginPopup(props) {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [, setUserContext] = useContext(UserContext);
-
     const [isLoading, setLoading] = useState(2);
+    console.log(isLoading);
     // must change to -1,0,1 later
     // 2: not submit
     // 0: loading
@@ -33,6 +33,8 @@ export default function LoginPopup(props) {
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('username', username);
                     localStorage.setItem('role', data.role);
+                    localStorage.setItem('refreshToken', data.refreshToken);
+                    localStorage.setItem('credits', data.credits);
 
                     setUserContext(oldValues => {
                         return {
@@ -40,6 +42,7 @@ export default function LoginPopup(props) {
                             token: data.token,
                             username: username,
                             isAdmin: data.role === 'admin',
+                            credits: data.credits
                         };
                     });
                     setLoading(1) //success;

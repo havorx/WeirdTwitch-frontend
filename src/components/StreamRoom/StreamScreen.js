@@ -1,12 +1,11 @@
-import React, { useState } from 'react'
 import { Card, Button } from 'react-bootstrap'
 import { Radio as RadioIcon, Mic, PhoneOff } from 'react-feather'
-import { SUB_PRIMARY_COLOR, SECONDARY_COLOR, PRIMARY_COLOR, PRIMARY_TEXT } from '../../utils/Const';
+import { SUB_PRIMARY_COLOR, SECONDARY_COLOR, PRIMARY_TEXT } from '../../utils/Const';
 import { Link } from 'react-router-dom';
 import { X as XIcon } from 'react-feather';
-import image from '../../assets/03-glitch.jpg'
+import image from '../../assets/image.webp'
 export default function StreamScreen({ roomName, isStreamer, topic, setTopic }) {
-    const biegeColor = "#484747fa"
+    const beigeColor = "#484747fa"
 
     return (
         <Card className="comment-side d-flex justify-content-between" style={{ backgroundColor: `${SUB_PRIMARY_COLOR}` }}>
@@ -25,7 +24,7 @@ export default function StreamScreen({ roomName, isStreamer, topic, setTopic }) 
                 style={{ backgroundImage: `url(${image})` }}
             >
                 <div style={{ width: '300px' }}>
-                    {topic && <Card style={{ backgroundColor: `${biegeColor}` }}>
+                    {topic && <Card style={{ backgroundColor: `${beigeColor}` }}>
                         <Card.Header >
                             <div className="d-flex justify-content-between">
                                 <h5 className="mb-0" >{topic.topicName}</h5>

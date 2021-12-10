@@ -25,8 +25,8 @@ export default function CreateStream() {
         getCategory();
     }, []);
 
-    const handleCreate = () => {
-
+    const handleCreate = (event) => {
+        event.preventDefault();
         myAxios.post('/rooms/create-room', {
             roomName: roomName,
             description: description,
@@ -34,10 +34,12 @@ export default function CreateStream() {
             roomHost: userContext.username,
         }).then(response => {
             if (response) {
-                if (response.statusText === 'OK')
-                    socket.emit('create-room', roomName);
-                navigate(`/stream/room/${roomName}`,
-                    {replace: false, state: {isStreamer: true}});
+                if (response.statusText === 'OK') {
+                    navigate(`/stream/room/${roomName}`,
+                        {replace: false, state: {isStreamer: true}});
+                    socket.emit('create-room',
+                        {roomName: roomName, username: userContext.username});
+                }
             }
         }).catch(error => {
             if (error.response) {
@@ -97,7 +99,8 @@ export default function CreateStream() {
                                         className="me-2 buttonOutlined">Cancel</Button>
                             </Form.Group>
                             <Form.Group as={Col} md="6" controlId="validationCustom01">
-                                <Button style={{width: '100px'}}
+                                <Button onClick={handleCreate}
+                                        style={{width: '100px'}}
                                         className="me-2 buttonFilledSecondary"
                                         variant="outline-none" type="submit">Create</Button>
                             </Form.Group>

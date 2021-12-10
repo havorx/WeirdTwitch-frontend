@@ -13,28 +13,34 @@ myAxios.interceptors.request.use(function (config) {
 });
 
 myAxios.interceptors.response.use(function (response) {
-    return response;
+    if (response) {
+        return response;
+    }
 }, async function (error) {
     if (error.response) {
         /* if error code = 401 (token failure) -> get new token using refreshToken and redo the previous request using
             new token*/
         if (error.response.statusText === 'Unauthorized' && error.response.status === 401) {
-            const {data} = await axiosPost('/refreshToken', {});
-            localStorage.setItem('token', data.token);
-            error.config.headers['Authorization'] = 'Bearer ' + data.token;
-            return myAxios.request(error.config);
+            const refreshToken = localStorage.getItem('refreshToken');
+            await axiosPost('/refreshToken', {refreshToken}).then(response => {
+                if (response && response.data) {
+                    const data = response.data;
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('refreshToken', data.refreshToken);
+                    error.config.headers['Authorization'] = 'Bearer ' + data.token;
+                    return myAxios.request(error.config);
+                }
+            });
         }
         //if error code = 404 (refreshToken failure) -> remove existing token and redirect to homepage
         else if ((error.response.status === 404 && (error.response.data === 'refreshToken not found' || error.response.data === 'User not found')) ||
             (error.response.status === 400 && error.response.data === 'no refreshToken in request')
         ) {
             localStorage.removeItem('token');
+            localStorage.removeItem('username');
+            localStorage.removeItem('role');
+            localStorage.removeItem('refreshToken');
             console.log(error);
-            if (error.response) {
-                localStorage.removeItem('token');
-                localStorage.removeItem('username');
-                localStorage.removeItem('role');
-            }
             // window.location = "/"
         }
     }

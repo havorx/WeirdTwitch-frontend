@@ -7,6 +7,7 @@ import {
     SUB_PRIMARY_TEXT,
 } from '../../utils/Const';
 import {myAxios} from "../../utils/AxiosSetup";
+import Avatar from "react-avatar";
 
 /*const arr = [0, 1, 2, 3, 4, 5, 6];
 const cate = ['Category 1', 'Category 2', 'Category 3'];
@@ -21,7 +22,7 @@ const userDetail = [
         description: 'hay',
         category: ['Poetry'],
     },];*/
-export default function FeatureUser() {
+export default function FeaturedUser() {
     const [user, setUser] = useState([]);
 
     function getUser() {
@@ -48,11 +49,14 @@ export default function FeatureUser() {
                     <Card.Header
                         className="d-flex flex-column justify-content-center align-items-center pt-3"
                         style={{background: `${SUB_PRIMARY_COLOR}`}}>
-                        <img src={image} alt="" style={{
+                   {/*     <img src={image} alt="" style={{
                             width: '50px',
                             height: '50px',
                             borderRadius: '100%',
-                        }}/>
+                        }}/>*/}
+                        <Avatar name={element.username}
+                                textSizeRatio={1.8}
+                                round={true} size={"50px"}/>
                         <p className="mb-0">{element.username}</p>
                     </Card.Header>
                     <Card.Body style={{background: PRIMARY_COLOR}}>
@@ -63,7 +67,7 @@ export default function FeatureUser() {
                             {element.category.map(element => {
                                 return <a href="*"
                                           key={element}
-                                          style={{color: SUB_PRIMARY_TEXT}}>| {element.categoryName} </a>;
+                                          style={{color: SUB_PRIMARY_TEXT}}>  {element.categoryName} </a>;
                             })}
                         </Card.Text>
                     </Card.Body>

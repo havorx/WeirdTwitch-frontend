@@ -6,17 +6,15 @@ import {useEffect, useState} from 'react';
 import {myAxios} from "../../utils/AxiosSetup";
 
 export default function HomepageCarousel() {
-    const room = {
-        username: String,
-        roomName: String
-    }
-    const [activeRooms, setActiveRooms] = useState([room]);
+
+    const [activeRooms, setActiveRooms] = useState([]);
 
     function getActiveRooms() {
-        myAxios.get('/rooms/all-room').then(response => {
+        myAxios.get('/rooms/all-room').then(async response => {
             if (response) {
                 if (response.statusText === 'OK') {
-                    setActiveRooms(response.data);
+                    const rooms = await response.data;
+                    setActiveRooms(rooms);
                 }
             }
         });
@@ -55,10 +53,14 @@ export default function HomepageCarousel() {
                 draggable={false}
                 className="mt-4">
                 {activeRooms.map(element => (
-                    <TrendingContent id={element.roomName} username={element.username}
-                                     roomName={element.roomName} propWidth={'500px'}
+                    <TrendingContent id={element.roomName}
+                                     key={element.roomHost}
+                                     description={element.description}
+                                     roomName={element.roomName}
+                                     roomHost={element.roomHost}
+                                     members={element.members}
+                                     propWidth={'500px'}
                                      propPadding={'0 8px'}
-                                     key={element.username}
                     />
                 ))}
             </Carousel>
