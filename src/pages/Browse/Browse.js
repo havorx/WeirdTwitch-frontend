@@ -15,9 +15,8 @@ export default function Browse() {
             if (response) {
                 if (response.statusText === 'OK') {
                     const data = await response.data;
-                    const categoryList = data.map(element => element);
-                    console.log(categoryList);
-                    setCategory(categoryList);
+                    console.log(data);
+                    setCategory(data);
                 }
             }
         });
@@ -50,7 +49,8 @@ export default function Browse() {
                             return <BrowseCard
                                 key={index}
                                 categoryName={element.categoryName}
-                                description={element.description}/>;
+                                description={element.description}
+                                followers={element.followers}/>;
                         })}
                     </div>
                 </div>

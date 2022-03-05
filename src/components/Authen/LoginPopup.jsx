@@ -35,6 +35,7 @@ export default function LoginPopup(props) {
                     localStorage.setItem('role', data.role);
                     localStorage.setItem('refreshToken', data.refreshToken);
                     localStorage.setItem('credits', data.credits);
+                    localStorage.setItem('userID', data.userID);
 
                     setUserContext(oldValues => {
                         return {
@@ -42,11 +43,15 @@ export default function LoginPopup(props) {
                             token: data.token,
                             username: username,
                             isAdmin: data.role === 'admin',
-                            credits: data.credits
+                            credits: data.credits,
+                            userID: data.userID
                         };
                     });
                     setLoading(1) //success;
-                    props.onHide();
+                    setTimeout(() => {
+                        props.onHide();
+                        setLoading(2);
+                    }, 500);
                 }
             }
         }).catch(error => {

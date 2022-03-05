@@ -35,10 +35,10 @@ export default function CreateStream() {
         }).then(response => {
             if (response) {
                 if (response.statusText === 'OK') {
-                    navigate(`/stream/room/${roomName}`,
-                        {replace: false, state: {isStreamer: true}});
                     socket.emit('create-room',
                         {roomName: roomName, username: userContext.username});
+                    navigate(`/stream/room/${roomName}`,
+                        {replace: false, state: {isStreamer: true}});
                 }
             }
         }).catch(error => {

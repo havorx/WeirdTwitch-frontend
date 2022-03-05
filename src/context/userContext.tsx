@@ -1,21 +1,24 @@
-import {createContext, Dispatch, ReactChild, ReactFragment, ReactPortal, SetStateAction, useState} from 'react';
+import {createContext, Dispatch, SetStateAction, useState} from 'react';
 
 const token = localStorage.getItem('token');
 const username = localStorage.getItem('username');
 const role = localStorage.getItem('role');
 const credits = localStorage.getItem('credits');
+const userID = localStorage.getItem('userID');
 type IUserState = {
     token?: any;
     username?: any;
     isAdmin?: any;
     credits?: any;
+    userID?: any;
 };
 
 let initialState = {
     token: token,
     username: username,
     isAdmin: role === 'admin',
-    credits: credits
+    credits: credits,
+    userID: userID
 };
 
 

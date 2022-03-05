@@ -52,12 +52,11 @@ export default function Category() {
                 </section>
                 <section className="mb-4">
                     <h5>Live</h5>
-                    <div className="basic-grid">
+                    {activeRooms.length !== 0 && <div className="basic-grid-three">
+                        <TrendingContent propWidth={"100%"} />
+                        <TrendingContent propWidth={"100%"} />
                         <TrendingContent propWidth={"100%"} />
 
-                    </div>
-
-                    {activeRooms.length !== 0 && <div className="basic-grid">
                         {/*  <TrendingContent propWidth={"100%"} />
                         <TrendingContent propWidth={"100%"} />
                         <TrendingContent propWidth={"100%"} />*/}
@@ -68,6 +67,7 @@ export default function Category() {
                                              roomName={element.roomName}
                                              roomHost={element.roomHost}
                                              members={element.members}
+                                             categoryName={element.roomCategory}
                                              propWidth={"100%"}
                             />
                         ))}

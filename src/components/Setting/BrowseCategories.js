@@ -1,16 +1,60 @@
-import React, { useState } from 'react'
-import { Modal, Form, Button, InputGroup, FormControl } from 'react-bootstrap'
+import React, {useContext, useEffect, useState} from 'react'
+import {Modal, Form, Button, InputGroup, FormControl} from 'react-bootstrap'
+import {myAxios} from "../../utils/AxiosSetup";
+import {UserContext} from "../../context/userContext";
+
 export default function BrowseCategories(props) {
-
+    const {pickedCategory} = props;
+    const [userContext] = useContext(UserContext);
     const [selected, setSelected] = useState(new Set());
+    const [categoryList, setCategoryList] = useState([]);
+    console.log(selected);
 
-    const handleSubmit = () => {
-
+    function handleSubmit(event) {
+        event.preventDefault();
+        const data = Array.from(selected);
+        console.log(data);
+        if (data.length !== pickedCategory.length) {
+            myAxios.patch('/user/add-category',
+                {data, username: userContext.username}).then(async response => {
+                if (response) {
+                    if (response.statusText === 'OK') {
+                        const data = await response.data;
+                        const categoryID = data.category.map(e => e._id)
+                        setSelected(new Set(categoryID));
+                        props.onHide();
+                    }
+                }
+            });
+        }
     }
 
-    const a = [1, 2, 3, 4, 5, 6, 7]
+    function getUserDetail() {
+        const username = userContext.username;
+        myAxios.get('/user/user-detail', {params: {username}}).then(async response => {
+            if (response) {
+                if (response.statusText === 'OK') {
+                    const data = await response.data;
+                    const categoryID = data.category.map(e => e._id)
+                    setSelected(new Set(categoryID));
 
-    const { pickedCategory } = props;
+                }
+            }
+        });
+    }
+
+    const a = ['dawd', 'awdawd', 'awdawdxzcz'];
+
+    function getCategoryList() {
+        myAxios.get('/category/get-category').then(response => {
+            if (response) {
+                if (response.statusText === 'OK') {
+                    const data = response.data;
+                    setCategoryList(data);
+                }
+            }
+        });
+    }
 
     const handleOnChange = (e) => {
         const value = e.target.value
@@ -36,44 +80,49 @@ export default function BrowseCategories(props) {
             return next;
         });
     }
-
+    useEffect(() => {
+        getUserDetail();
+        getCategoryList();
+    }, []);
     return (
         <Modal
             {...props}
             aria-labelledby="contained-modal-title-vcenter"
             centered
-            backdrop="static"
         >
-            <Modal.Header style={{ backgroundColor: '#18181b', justifyContent: 'center', border: 'none' }} closeButton closeVariant="white">
+            <Modal.Header style={{backgroundColor: '#18181b', justifyContent: 'center', border: 'none'}} closeButton
+                          closeVariant="white">
                 <Modal.Title id="contained-modal-title-vcenter ">
                     <span>Choose Categories</span>
                 </Modal.Title>
             </Modal.Header>
-            <Modal.Body style={{ backgroundColor: '#18181b', maxHeight: "300px", overflowY: 'auto', border: 'none' }}>
-                <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
+                <Modal.Body style={{backgroundColor: '#18181b', maxHeight: "300px", overflowY: 'auto', border: 'none'}}>
                     {
-                        a.map(e => {
+                        categoryList.map(e => {
                             return <InputGroup className="mb-3">
                                 <InputGroup.Checkbox
                                     aria-label="Checkbox for following text input"
-                                    value={`Category${e}`}
+                                    value={`${e._id}`}
                                     onChange={handleOnChange}
+                                    checked={selected.has(e._id)}
                                 />
                                 <FormControl
                                     aria-label="Text input with checkbox"
                                     disabled
-                                    value={`Category${e}`}
+                                    value={`${e.categoryName}`}
                                 />
-                            </InputGroup>
+                            </InputGroup>;
                         })
                     }
-                </Form>
-            </Modal.Body>
-            <Modal.Footer style={{ backgroundColor: '#18181b', border: 'none' }}>
-                <Button className="mt-3 w-100 buttonFilledSecondary" variant="outline-none" type="submit">
-                    <b> Submit</b>
-                </Button>
-            </Modal.Footer>
-        </Modal >
+
+                </Modal.Body>
+                <Modal.Footer style={{backgroundColor: '#18181b', border: 'none'}}>
+                    <Button className="mt-3 w-100 buttonFilledSecondary" variant="outline-none" type="submit">
+                        <b> Submit</b>
+                    </Button>
+                </Modal.Footer>
+            </Form>
+        </Modal>
     )
 }

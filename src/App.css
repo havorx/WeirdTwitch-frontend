@@ -143,6 +143,12 @@ textarea:focus {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
+.basic-grid-three {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+}
+
 .basic-grid-two {
   display: grid;
   gap: 1rem;

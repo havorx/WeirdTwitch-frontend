@@ -22,7 +22,7 @@ myAxios.interceptors.response.use(function (response) {
             new token*/
         if (error.response.statusText === 'Unauthorized' && error.response.status === 401) {
             const refreshToken = localStorage.getItem('refreshToken');
-            await axiosPost('/refreshToken', {refreshToken}).then(response => {
+            await axiosPost('/auth/refreshToken', {refreshToken}).then(response => {
                 if (response && response.data) {
                     const data = response.data;
                     localStorage.setItem('token', data.token);

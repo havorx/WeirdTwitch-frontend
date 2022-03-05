@@ -6,7 +6,7 @@ export default function Categories() {
     const [categories, setCategories] = useState([]);
 
     function getCategory() {
-        myAxios.get('/category/view-category').then(async response => {
+        myAxios.get('/category/get-category').then(async response => {
             if (response) {
                 if (response.statusText === 'OK') {
                     const data = await response.data;

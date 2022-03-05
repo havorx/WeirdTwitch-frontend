@@ -4,7 +4,7 @@ import {Heart, ArrowRightCircle} from 'react-feather'
 import {PRIMARY_TEXT, SUB_PRIMARY_COLOR, SECONDARY_COLOR} from '../../utils/Const'
 import {Link} from 'react-router-dom'
 
-export default function BrowseCard({categoryName, description}) {
+export default function BrowseCard({categoryName, description, followers}) {
     const categoryURL = `/category/${categoryName}`
     return (
         <Card className="mb-1" style={{width: '100%', border: '1px solid black', backgroundColor: SUB_PRIMARY_COLOR}}>
@@ -22,7 +22,7 @@ export default function BrowseCard({categoryName, description}) {
                     <b>Description: </b>{description}
                 </Card.Text>
                 <div className="d-flex justify-content-end me-1">
-                    <span>100 followings</span>
+                    <span>{followers} following</span>
                     <button className="hoverSecondaryColor"
                             style={{backgroundColor: 'inherit', border: 'none', color: PRIMARY_TEXT}}>
                         <Heart color='#eb6664'/>

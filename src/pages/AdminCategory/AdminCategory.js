@@ -1,27 +1,21 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import { Table, Button } from 'react-bootstrap'
 import CategoryEditDialog from '../../components/AdminDialog/CategoryEditDialog'
 import DeleteDialog from '../../components/AdminDialog/DeleteDialog';
+import {myAxios} from "../../utils/AxiosSetup";
 export default function AdminCategory() {
 
     const [editDialog, setEditDialog] = useState(false);
     const [deleteDialog, setDeleteDialog] = useState(false);
     const [currentID, setCurrentID] = useState(null);
-    const data = [
-        {
-            id: '1',
-            categoryName: 'Category Name',
-            followers: '1'
-        }, {
-            id: '1',
-            categoryName: 'Category Name',
-            followers: '1'
-        }, {
-            id: '1',
-            categoryName: 'Category Name',
-            followers: '1'
-        },
-    ]
+    const [categories, setCategories] = useState([]);
+
+    function getCategory() {
+        myAxios.get('/category/get-category').then(response => {
+            const data = response.data;
+            setCategories(data);
+        });
+    }
 
 
     const handleEdit = (id) => {
@@ -33,6 +27,9 @@ export default function AdminCategory() {
         setCurrentID(id);
         setDeleteDialog(true);
     }
+    useEffect(() => {
+        getCategory();
+    }, []);
 
 
     return (
@@ -48,13 +45,13 @@ export default function AdminCategory() {
                     </tr>
                 </thead>
                 <tbody>
-                    {data && data.map((el) => {
-                        return <tr key={el.id}>
+                    {categories && categories.map((el) => {
+                        return <tr key={el._id}>
                             <td>{el.categoryName}</td>
                             <td>{el.followers}</td>
                             <td >
-                                <Button className="me-2 buttonFilledSecondary" variant="outline-none" onClick={() => { handleEdit(el.id) }}>Edit</Button>
-                                <Button variant="danger" onClick={() => { handleDelete(el.id) }}>Delete</Button>
+                                <Button className="me-2 buttonFilledSecondary" variant="outline-none" onClick={() => { handleEdit(el._id) }}>Edit</Button>
+                                <Button variant="danger" onClick={() => { handleDelete(el._id) }}>Delete</Button>
                             </td>
                         </tr>
                     })}

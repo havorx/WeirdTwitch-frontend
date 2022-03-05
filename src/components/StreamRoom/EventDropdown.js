@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { NavDropdown, Dropdown } from 'react-bootstrap'
 import EventDialog from './EventDialog';
-export default function EventDropdown({ setTopic }) {
+export default function EventDropdown({ setTopic, roomName }) {
 
     const [openTopic, setOpenTopic] = useState(false);
 
 
     return (
         <>
-            <EventDialog setTopic={setTopic} show={openTopic} onHide={() => setOpenTopic(false)} />
+            <EventDialog roomName={roomName} setTopic={setTopic} show={openTopic} onHide={() => setOpenTopic(false)} />
             <NavDropdown
                 id="nav-dropdown-dark-example"
                 title="Events"
