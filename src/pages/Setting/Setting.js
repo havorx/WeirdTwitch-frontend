@@ -11,7 +11,7 @@ export default function Setting() {
 
     function getUserDetail() {
         const username = userContext.username;
-        myAxios.get('/user/user-detail', {params: {username}}).then(async response => {
+        myAxios.get(`/user/user-detail/${username}`).then(async response => {
             if (response) {
                 if (response.statusText === 'OK') {
                     const data = await response.data;

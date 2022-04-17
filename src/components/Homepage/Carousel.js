@@ -10,7 +10,7 @@ export default function HomepageCarousel() {
     const [activeRooms, setActiveRooms] = useState([]);
 
     function getActiveRooms() {
-        myAxios.get('/rooms/all-room').then(async response => {
+        myAxios.get('/rooms/get-room').then(async response => {
             if (response) {
                 if (response.statusText === 'OK') {
                     const rooms = await response.data;

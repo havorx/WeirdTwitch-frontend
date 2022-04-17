@@ -25,7 +25,6 @@ export default function MainNav() {
     const [loginShow, setLoginShow] = useState(false);
     const [registerShow, setRegisterShow] = useState(false);
     const [openCredit, setOpenCredit] = useState(false);
-    console.log('userContext: ', userContext)
     return (
         <>
             <CreditDialog show={openCredit} onHide={() => setOpenCredit(false)}/>

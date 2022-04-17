@@ -22,7 +22,14 @@ export default function RegisterPopup(props) {
     // -1: failed (use XCircle for failed)
 
     const handleSubmit = (event) => {
-        event.preventDefault();
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        console.log(validated);
+        setValidated(true);
+        /*event.preventDefault();
         setLoading(0);
 
         myAxios.post('/auth/signup', {
@@ -52,7 +59,7 @@ export default function RegisterPopup(props) {
                     setLoading(2);
                 }, 500);
             }
-        });
+        });*/
     };
 
     const render = () => {
@@ -93,7 +100,7 @@ export default function RegisterPopup(props) {
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="validationCustomFullName">
-                                <Form.Label>Full Name</Form.Label>
+                                <Form.Label>Full name</Form.Label>
                                 <InputGroup hasValidation>
                                     <Form.Control required className="inputLogin" type="text"
                                                   placeholder="Enter your full name"

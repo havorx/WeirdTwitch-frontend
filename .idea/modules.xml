@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/final-year-project-frontend.iml" filepath="$PROJECT_DIR$/.idea/final-year-project-frontend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/WeirdTwitch-frontend.iml" filepath="$PROJECT_DIR$/.idea/WeirdTwitch-frontend.iml" />
     </modules>
   </component>
 </project>

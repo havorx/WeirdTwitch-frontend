@@ -15,7 +15,7 @@ export default function BrowseCategories(props) {
         const data = Array.from(selected);
         console.log(data);
         if (data.length !== pickedCategory.length) {
-            myAxios.patch('/user/add-category',
+            myAxios.patch('/user/update-user',
                 {data, username: userContext.username}).then(async response => {
                 if (response) {
                     if (response.statusText === 'OK') {
@@ -31,7 +31,7 @@ export default function BrowseCategories(props) {
 
     function getUserDetail() {
         const username = userContext.username;
-        myAxios.get('/user/user-detail', {params: {username}}).then(async response => {
+        myAxios.get(`/user/user-detail/${username}`).then(async response => {
             if (response) {
                 if (response.statusText === 'OK') {
                     const data = await response.data;
