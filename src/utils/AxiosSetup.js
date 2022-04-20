@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 export const myAxios = axios.create({
-    baseURL: process.env.BACKEND_BASE_URL ?? 'http://localhost:5000',
+    baseURL: process.env.BACKEND_BASE_URL || 'http://localhost:5000',
     withCredentials: true
 });
 
