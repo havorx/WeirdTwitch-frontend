@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 export const myAxios = axios.create({
-    baseURL: process.env.BACKEND_BASE_URL,
+    baseURL: 'https://weird-twitch-be.herokuapp.com',
     withCredentials: true
 });
 
