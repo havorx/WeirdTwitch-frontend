@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {Container, Form, Row, Col, Button} from 'react-bootstrap';
 import {myAxios} from '../../utils/AxiosSetup';
 import {useNavigate} from 'react-router';
-import {socket} from '../../services/socketIO.js';
+// import {socket} from '../../services/socketIO.js';
 import {UserContext} from '../../context/userContext.tsx';
 
 export default function CreateStream() {
@@ -34,12 +34,12 @@ export default function CreateStream() {
             roomHost: userContext.username,
         }).then(response => {
             if (response) {
-                if (response.statusText === 'OK') {
+    /*            if (response.statusText === 'OK') {
                     socket.emit('create-room',
                         {roomName: roomName, username: userContext.username});
                     navigate(`/stream/room/${roomName}`,
                         {replace: false, state: {isStreamer: true}});
-                }
+                }*/
             }
         }).catch(error => {
             if (error.response) {

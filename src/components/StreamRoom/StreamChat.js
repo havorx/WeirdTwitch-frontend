@@ -4,12 +4,12 @@ import {SUB_PRIMARY_COLOR, SECONDARY_COLOR} from '../../utils/Const';
 import {Send} from 'react-feather';
 import './StreamComment.css';
 import Message from './Message.js';
-import {socket} from '../../services/socketIO.js';
+// import {socket} from '../../services/socketIO.js';
 import {UserContext} from '../../context/userContext.tsx';
 import LoginPopup from '../Authen/LoginPopup';
 import EventDropdown from './EventDropdown';
 
-export default function StreamChat({isStreamer, roomName, setTopic, audience}) {
+export default function StreamChat({isStreamer, roomName, setTopic, audience, ...props}) {
     const [userContext] = useContext(UserContext);
     const [text, setText] = useState('');
     const [message, setMessage] = useState([]);
@@ -34,7 +34,7 @@ export default function StreamChat({isStreamer, roomName, setTopic, audience}) {
             const data = {
                 text: text, roomName: roomName, username: userContext.username,
             };
-            socket.emit('send-message', data);
+            props.socket.emit('send-message', data);
             setText('');
         }
     }
@@ -61,7 +61,7 @@ export default function StreamChat({isStreamer, roomName, setTopic, audience}) {
     }, []);
 
     useEffect(() => {
-        socket.on('send-message', data => {
+        props.socket.on('send-message', data => {
             setMessage(oldMessage => [data, ...oldMessage]);
         });
     }, []);

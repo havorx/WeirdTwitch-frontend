@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {Modal, Form, Button} from 'react-bootstrap'
-import {socket} from "../../services/socketIO";
+// import {socket} from "../../services/socketIO";
 
 export default function EventDialog(props) {
 
@@ -13,7 +13,7 @@ export default function EventDialog(props) {
         if (topicName.trim() !== '' && topicDesc.trim() !== '') {
             const {onHide} = props;
             const {setTopic} = props;
-            socket.emit('set-topic', ({topicName, topicDesc, roomName}));
+            props.socket.emit('set-topic', ({topicName, topicDesc, roomName}));
             setTopic({topicName, topicDesc})
             setTopicName("")
             setTopicDesc("")
@@ -22,7 +22,7 @@ export default function EventDialog(props) {
     }
     useEffect(() => {
         const {setTopic} = props;
-        socket.on('update-topic', ({topicName, topicDesc}) => {
+        props.socket.on('update-topic', ({topicName, topicDesc}) => {
             setTopic({topicName, topicDesc})
         });
     }, []);

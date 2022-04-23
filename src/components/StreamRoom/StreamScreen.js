@@ -3,13 +3,13 @@ import {Radio as RadioIcon, Mic, PhoneOff} from 'react-feather'
 import {SUB_PRIMARY_COLOR, SECONDARY_COLOR, PRIMARY_TEXT} from '../../utils/Const';
 import {X as XIcon} from 'react-feather';
 import image from '../../assets/image.webp'
-import {socket} from "../../services/socketIO";
+// import {socket} from "../../services/socketIO";
 import {useContext} from "react";
 import {UserContext} from "../../context/userContext";
 import {myAxios} from "../../utils/AxiosSetup";
 import {useNavigate} from "react-router";
 
-export default function StreamScreen({roomName, isStreamer, member, topic, setTopic}) {
+export default function StreamScreen({roomName, isStreamer, member, topic, setTopic, props}) {
     const beigeColor = "#484747fa";
     const [userContext] = useContext(UserContext);
     const navigate = useNavigate();
@@ -24,8 +24,8 @@ export default function StreamScreen({roomName, isStreamer, member, topic, setTo
             if (response) {
                 if (response.statusText === 'OK') {
                     if (isStreamer) {
-                        socket.emit('end-room', {username: userContext.username, roomName});
-                    } else socket.emit('leave-room', {username: userContext.username, roomName});
+                        props.socket.emit('end-room', {username: userContext.username, roomName});
+                    } else props.socket.emit('leave-room', {username: userContext.username, roomName});
                 }
             }
         });

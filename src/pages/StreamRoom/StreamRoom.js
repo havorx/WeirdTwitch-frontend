@@ -89,6 +89,7 @@ export default function StreamRoom() {
               topic={topic}
               roomName={roomName}
               isStreamer={isStreamer}
+              socket={socket}
             />
           </Col>
           <Col className="room-border p-0" xs={3}>
@@ -98,6 +99,7 @@ export default function StreamRoom() {
                 setTopic={setTopic}
                 roomName={roomName}
                 isStreamer={isStreamer}
+                socket={socket}
               />
             </aside>
           </Col>
