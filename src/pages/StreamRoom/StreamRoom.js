@@ -4,9 +4,9 @@ import { Container, Col, Row } from 'react-bootstrap';
 import StreamScreen from '../../components/StreamRoom/StreamScreen';
 import StreamChat from '../../components/StreamRoom/StreamChat';
 import './StreamRoom.css';
-import { socket } from '../../services/socketIO.js';
 import { UserContext } from '../../context/userContext.tsx';
 import { myAxios } from '../../utils/AxiosSetup';
+import io from 'socket.io-client';
 
 export default function StreamRoom() {
   const { roomName } = useParams();
@@ -16,9 +16,9 @@ export default function StreamRoom() {
   const [audience, setAudience] = useState([]);
   const isStreamer = state?.isStreamer;
   const audioRef = useRef(null);
-
+  const socket = io(process.env.REACT_APP_BACKEND_BASE_URL || 'http://localhost:1280');
   useEffect(() => {
-    socket.on('receive-audio', (arrayBuffer) => {
+    socket.on('board-cast-audio', (arrayBuffer) => {
       const blob = new Blob([arrayBuffer], { type: 'audio/ogg; codecs=opus' });
       audioRef.current.src = window.URL.createObjectURL(blob);
       audioRef.current.play();
@@ -41,7 +41,7 @@ export default function StreamRoom() {
             const blob = new Blob(this.chunks, {
               type: 'audio/ogg; codecs=opus',
             });
-            socket.emit('hello', blob);
+            socket.emit('send-audio', blob);
           };
 
           // Start recording
