@@ -7,6 +7,7 @@ import './StreamRoom.css';
 import { UserContext } from '../../context/userContext.tsx';
 import { myAxios } from '../../utils/AxiosSetup';
 import io from 'socket.io-client';
+const socket = io(process.env.REACT_APP_BACKEND_BASE_URL || 'http://localhost:1280');
 
 export default function StreamRoom() {
   const { roomName } = useParams();
@@ -16,7 +17,6 @@ export default function StreamRoom() {
   const [audience, setAudience] = useState([]);
   const isStreamer = state?.isStreamer;
   const audioRef = useRef(null);
-  const socket = io(process.env.REACT_APP_BACKEND_BASE_URL || 'http://localhost:1280');
   useEffect(() => {
     socket.on('board-cast-audio', (arrayBuffer) => {
       const blob = new Blob([arrayBuffer], { type: 'audio/ogg; codecs=opus' });
