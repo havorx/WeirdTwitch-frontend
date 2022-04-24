@@ -7,9 +7,11 @@ import './StreamRoom.css';
 import { UserContext } from '../../context/userContext.tsx';
 import { myAxios } from '../../utils/AxiosSetup';
 import io from 'socket.io-client';
-const socket = io(process.env.REACT_APP_BACKEND_BASE_URL || 'http://localhost:1280');
 
 export default function StreamRoom() {
+  const socket = io(
+    process.env.REACT_APP_BACKEND_BASE_URL || 'http://localhost:1280',
+  );
   const { roomName } = useParams();
   const { state } = useLocation();
   const [userContext] = useContext(UserContext);
@@ -17,42 +19,49 @@ export default function StreamRoom() {
   const [audience, setAudience] = useState([]);
   const isStreamer = state?.isStreamer;
   const audioRef = useRef(null);
+
   useEffect(() => {
-    socket.on('board-cast-audio', (arrayBuffer) => {
-      const blob = new Blob([arrayBuffer], { type: 'audio/ogg; codecs=opus' });
-      audioRef.current.src = window.URL.createObjectURL(blob);
-      audioRef.current.play();
-    });
+    if (!isStreamer) {
+      socket.on('board-cast-audio', (arrayBuffer) => {
+        const blob = new Blob([arrayBuffer], {
+          type: 'audio/ogg; codecs=opus',
+        });
+        audioRef.current.src = window.URL.createObjectURL(blob);
+        audioRef.current.play();
+      });
+    }
   }, []);
 
   useEffect(() => {
-    setInterval(() => {
-      navigator.mediaDevices
-        .getUserMedia({ audio: true })
-        .then(function (mediaStream) {
-          let mediaRecorder = new MediaRecorder(mediaStream);
-          mediaRecorder.onstart = function (e) {
-            this.chunks = [];
-          };
-          mediaRecorder.ondataavailable = function (e) {
-            this.chunks.push(e.data);
-          };
-          mediaRecorder.onstop = function (e) {
-            const blob = new Blob(this.chunks, {
-              type: 'audio/ogg; codecs=opus',
-            });
-            socket.emit('send-audio', blob);
-          };
+    if (isStreamer) {
+      setInterval(() => {
+        navigator.mediaDevices
+          .getUserMedia({ audio: true })
+          .then(function (mediaStream) {
+            let mediaRecorder = new MediaRecorder(mediaStream);
+            mediaRecorder.onstart = function (e) {
+              this.chunks = [];
+            };
+            mediaRecorder.ondataavailable = function (e) {
+              this.chunks.push(e.data);
+            };
+            mediaRecorder.onstop = function (e) {
+              const blob = new Blob(this.chunks, {
+                type: 'audio/ogg; codecs=opus',
+              });
+              socket.emit('send-audio', { blob, roomName });
+            };
 
-          // Start recording
-          mediaRecorder.start();
+            // Start recording
+            mediaRecorder.start();
 
-          // Stop recording after 5 seconds and broadcast it to server
-          setTimeout(() => {
-            mediaRecorder.stop();
-          }, 500);
-        });
-    }, 500);
+            // Stop recording after 5 seconds and broadcast it to server
+            setTimeout(() => {
+              mediaRecorder.stop();
+            }, 500);
+          });
+      }, 500);
+    }
   });
 
   function getRoomDetail() {
@@ -84,7 +93,7 @@ export default function StreamRoom() {
         <Row>
           <Col xs={9}>
             <StreamScreen
-              member={audience.length}
+              member={audience?.length ?? 0}
               setTopic={setTopic}
               topic={topic}
               roomName={roomName}
@@ -104,7 +113,7 @@ export default function StreamRoom() {
             </aside>
           </Col>
         </Row>
-        <audio src="" ref={audioRef}></audio>
+        {!isStreamer ?? <audio src="" ref={audioRef} />}
       </Container>
     </article>
   );
