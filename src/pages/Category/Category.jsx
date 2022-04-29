@@ -35,7 +35,6 @@ export default function Category() {
     useEffect(() => {
         getCategoryByName();
         getRoomsByCategory();
-        console.log(activeRooms);
     }, []);
     return (
         <article>

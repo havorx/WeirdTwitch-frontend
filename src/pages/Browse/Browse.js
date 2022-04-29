@@ -15,7 +15,6 @@ export default function Browse() {
             if (response) {
                 if (response.statusText === 'OK') {
                     const data = await response.data;
-                    console.log(data);
                     setCategory(data);
                 }
             }

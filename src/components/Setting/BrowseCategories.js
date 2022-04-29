@@ -37,7 +37,6 @@ export default function BrowseCategories(props) {
                     const data = await response.data;
                     const categoryID = data.category.map(e => e._id)
                     setSelected(new Set(categoryID));
-
                 }
             }
         });

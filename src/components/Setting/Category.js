@@ -5,7 +5,6 @@ import BrowseCategories from './BrowseCategories';
 
 export default function Category({category}) {
     const [editCategory, setEditCategory] = useState(false);
-    console.log(category);
     const categoryNameArr = category.length !== 0 ? category.map(element => element.categoryName) : [];
     const categoryIDArr = category.length !== 0 ? category.map(element => element._id) : [];
     return (

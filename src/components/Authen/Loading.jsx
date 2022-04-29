@@ -13,7 +13,6 @@ export default function Loading({ loaded }) {
                 <h5 className="position-absolute" style={{ bottom: '60px' }}>Loading ...</h5>
             </>
         } else if (loaded === 1) {
-            console.log("loaded")
             return <>
                 <CheckCircle className="mb-3" color={SECONDARY_COLOR} size={105} />
                 <h5 className="position-absolute" style={{ bottom: '60px' }}>Success !</h5>
